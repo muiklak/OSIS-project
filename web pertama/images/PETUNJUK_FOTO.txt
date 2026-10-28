@@ -1,0 +1,2 @@
+Letakkan foto-foto Anda di dalam folder ini (misal: logo.png, ketua.jpg, proker1.jpg).
+Kemudian hubungkan di file index.html dengan src="images/nama-file.jpg".
