@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <title>OSIS SMKN BATUJAYA - Official Retro Profile & PR Hub</title>
+    <title>OSIS SMKN BATUJAYA - Official Educational Portal & PR Hub</title>
     
     <!-- Meta SEO & Open Graph -->
-    <meta name="description" content="Website Resmi OSIS SMKN Batujaya Periode 2026/2027. Inbound & Public Relations, Rekam Jejak Setahun, dan Kolom Donasi QRIS & E-Wallet dengan Pelacak Pengunjung Global.">
-    <meta name="theme-color" content="#FFE600">
+    <meta name="description" content="Website Resmi OSIS SMKN Batujaya Periode 2026/2027. Portal Akademik, Humas & Public Relations, Rekam Jejak Tahunan, Program Kerja Unggulan, dan Kemitraan Donasi.">
+    <meta name="theme-color" content="#0F2744">
 
     <!-- Google Fonts: Space Grotesk, Press Start 2P, VT323 & Plus Jakarta Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,17 +28,35 @@
             theme: {
                 extend: {
                     colors: {
+                        // Palette Edukasi & Akademik Modern
+                        edu: {
+                            navy: '#0F2744',
+                            deep: '#0A1B30',
+                            blue: '#1E3A5F',
+                            sky: '#0284C7',
+                            gold: '#D97706',
+                            amber: '#F59E0B',
+                            lightGold: '#FEF3C7',
+                            emerald: '#059669',
+                            mint: '#10B981',
+                            paper: '#F8FAFC',
+                            cardDark: '#111D38',
+                            dark: '#0B132B',
+                            border: '#CBD5E1',
+                            borderDark: '#2A3B5C'
+                        },
+                        // Alias retro ke educational harmony palette (menjaga kompatibilitas data & kode)
                         retro: {
-                            yellow: '#FFE600',
-                            pink: '#FF2A85',
-                            cyan: '#00F5D4',
-                            purple: '#7928CA',
-                            orange: '#FF6B35',
-                            lime: '#2CEAA3',
-                            paper: '#FAF7EE',
-                            card: '#FFFFFF',
-                            dark: '#121212',
-                            border: '#18181B'
+                            yellow: '#F59E0B',  // Scholastic Amber / Gold
+                            pink: '#1E3A5F',    // Academic Deep Navy / Royal
+                            cyan: '#0284C7',    // Intellectual Azure / Sky
+                            purple: '#4F46E5',  // Academic Indigo
+                            orange: '#EA580C',  // Warm Scholastic Terracotta
+                            lime: '#10B981',    // Growth Emerald
+                            paper: '#F8FAFC',   // Clean Warm Academic Paper
+                            card: '#FFFFFF',    // Crisp Card White
+                            dark: '#0B132B',    // Academic Slate Navy Dark
+                            border: '#0F2744'   // Scholastic Deep Navy Border
                         }
                     },
                     fontFamily: {
@@ -48,22 +66,33 @@
                         terminal: ['VT323', 'monospace']
                     },
                     boxShadow: {
-                        'brutal-sm': '2px 2px 0px #000',
-                        'brutal': '3.5px 3.5px 0px #000',
-                        'brutal-md': '5px 5px 0px #000',
-                        'brutal-lg': '6px 6px 0px #000',
-                        'brutal-xl': '8px 8px 0px #000',
-                        'brutal-pink': '4px 4px 0px #FF2A85',
-                        'brutal-cyan': '4px 4px 0px #00F5D4',
-                        'brutal-yellow': '4px 4px 0px #FFE600'
+                        'brutal-sm': '2px 2px 0px #0F2744',
+                        'brutal': '3.5px 3.5px 0px #0F2744',
+                        'brutal-md': '5px 5px 0px #0F2744',
+                        'brutal-lg': '6px 6px 0px #0F2744',
+                        'brutal-xl': '8px 8px 0px #0F2744',
+                        'brutal-pink': '4px 4px 0px #1E3A5F',
+                        'brutal-cyan': '4px 4px 0px #0284C7',
+                        'brutal-yellow': '4px 4px 0px #F59E0B',
+                        'academic': '3px 3px 0px #0F2744',
+                        'academic-gold': '3px 3px 0px #F59E0B'
                     }
                 }
             }
         }
     </script>
 
+    <script>
+        // Instant Theme Check to eliminate FOUC (Flash of Unstyled Content)
+        if (localStorage.getItem('osis_theme') === 'dark' || (!localStorage.getItem('osis_theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+
     <style>
-        /* Base styles: Responsive & Clean (3 Columns on Desktop, 1 Column on Mobile) */
+        /* Base styles: Responsive & Clean */
         html {
             width: 100%;
             -webkit-text-size-adjust: 100%;
@@ -71,16 +100,52 @@
             overflow-x: hidden;
             scroll-behavior: smooth;
         }
+
+        :root {
+            --bg-page: #F8FAFC;
+            --bg-dot: #CBD5E1;
+            --card-bg: #FFFFFF;
+            --text-main: #0F172A;
+            --text-sub: #475569;
+            --border-main: #0F2744;
+            --shadow-brutal: #0F2744;
+            --window-bar-bg: #0F2744;
+            --window-bar-text: #F8FAFC;
+            --nav-bg: #FFFFFF;
+            --radar-grid: rgba(15, 39, 68, 0.05);
+            --accent-gold: #F59E0B;
+            --accent-navy: #1E3A5F;
+            --accent-emerald: #10B981;
+        }
+
+        html.dark {
+            --bg-page: #0B132B;
+            --bg-dot: #1C274C;
+            --card-bg: #111D38;
+            --text-main: #F1F5F9;
+            --text-sub: #94A3B8;
+            --border-main: #2A3B5C;
+            --shadow-brutal: #050B18;
+            --window-bar-bg: #070D1F;
+            --window-bar-text: #F59E0B;
+            --nav-bg: #0C1530;
+            --radar-grid: rgba(245, 158, 11, 0.05);
+            --accent-gold: #F59E0B;
+            --accent-navy: #38BDF8;
+            --accent-emerald: #10B981;
+        }
+
         body {
-            background-color: #FAF7EE;
-            background-image: radial-gradient(#cbd5e1 1.2px, transparent 1.2px);
+            background-color: var(--bg-page);
+            background-image: radial-gradient(var(--bg-dot) 1.2px, transparent 1.2px);
             background-size: 24px 24px;
-            color: #121212;
+            color: var(--text-main);
             width: 100%;
             margin: 0;
             padding: 0;
             overflow-x: hidden;
             -webkit-tap-highlight-color: transparent;
+            transition: background-color 0.35s cubic-bezier(0.16, 1, 0.3, 1), color 0.35s ease;
         }
 
         /* Fast touch response without 300ms delay & prevent accidental gestures */
@@ -93,40 +158,306 @@
             touch-action: none;
         }
 
-        /* Custom Retro Scrollbar */
+        /* Custom Educational Scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: #FFE600;
-            border-left: 2px solid #000;
+            background: #E2E8F0;
+            border-left: 1px solid #CBD5E1;
+        }
+        html.dark ::-webkit-scrollbar-track {
+            background: #0B132B;
+            border-left: 1px solid #2A3B5C;
         }
         ::-webkit-scrollbar-thumb {
-            background: #121212;
-            border: 2px solid #FFE600;
+            background: #0F2744;
+            border: 1.5px solid #F59E0B;
+            border-radius: 4px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #FF2A85;
+            background: #D97706;
         }
 
-        /* Neo-Brutalist Classes */
+        /* =========================================================
+           ✨ FASE 1: DARK MODE ENHANCEMENTS (ACADEMIC SLATE)
+           ========================================================= */
+        html.dark header {
+            background-color: var(--nav-bg) !important;
+            border-bottom-color: #2A3B5C !important;
+        }
+        html.dark .brutal-card {
+            background-color: var(--card-bg) !important;
+            border-color: #2A3B5C !important;
+            box-shadow: 4px 4px 0px #050B18 !important;
+            color: var(--text-main) !important;
+        }
+        @media (min-width: 768px) {
+            html.dark .brutal-card {
+                box-shadow: 5px 5px 0px #050B18 !important;
+            }
+        }
+        html.dark .window-bar {
+            background-color: var(--window-bar-bg) !important;
+            border-bottom-color: #2A3B5C !important;
+            color: var(--window-bar-text) !important;
+        }
+        html.dark .text-black {
+            color: #F1F5F9 !important;
+        }
+        html.dark .text-zinc-700, 
+        html.dark .text-zinc-600 {
+            color: #94A3B8 !important;
+        }
+        html.dark .text-zinc-500 {
+            color: #64748B !important;
+        }
+        html.dark .bg-white {
+            background-color: #131E3A !important;
+        }
+        html.dark .border-black {
+            border-color: #2A3B5C !important;
+        }
+        html.dark .border-zinc-200 {
+            border-color: #223254 !important;
+        }
+        html.dark #hud-visitor-badge {
+            background-color: #131E3A !important;
+            border-color: #F59E0B !important;
+            color: #F1F5F9 !important;
+        }
+        html.dark #hud-country-text {
+            color: #F59E0B !important;
+        }
+        html.dark input, 
+        html.dark textarea, 
+        html.dark select {
+            background-color: #0E172E !important;
+            color: #F1F5F9 !important;
+            border-color: #2A3B5C !important;
+        }
+
+        /* =========================================================
+           ⚡ FASE 2: ACADEMIC HERO MATRIX, GLOW & MORPH ANIMATIONS
+           ========================================================= */
+        .hero-radar-grid {
+            background-image: 
+                linear-gradient(to right, var(--radar-grid) 1px, transparent 1px),
+                linear-gradient(to bottom, var(--radar-grid) 1px, transparent 1px);
+            background-size: 28px 28px;
+            animation: radarGridScan 24s linear infinite;
+        }
+        @keyframes radarGridScan {
+            0% { background-position: 0 0; }
+            100% { background-position: 28px 28px; }
+        }
+
+        /* Refined Scholastic Gold Aura Effect */
+        .glitch-hover {
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .glitch-hover:hover {
+            transform: translateY(-2px) rotate(-0.5deg);
+            box-shadow: 0 6px 18px rgba(245, 158, 11, 0.4), 3.5px 3.5px 0px #0F2744;
+        }
+
+        /* Bobbing Floating Badges */
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-6px) rotate(1deg); }
+        }
+        @keyframes floatReverse {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(6px) rotate(-1deg); }
+        }
+        .animate-float-1 {
+            animation: floatSlow 4s ease-in-out infinite;
+        }
+        .animate-float-2 {
+            animation: floatReverse 4.5s ease-in-out infinite 0.5s;
+        }
+
+        /* Morphing Color Pulse for Badges (Scholastic Gold & Navy) */
+        @keyframes morphBadgeBorder {
+            0%, 100% { border-color: #0F2744; box-shadow: 2.5px 2.5px 0px #0F2744; }
+            50% { border-color: #F59E0B; box-shadow: 2.5px 2.5px 0px #F59E0B; }
+        }
+        .morph-border {
+            animation: morphBadgeBorder 4.5s ease-in-out infinite;
+        }
+
+        /* =========================================================
+           🗺️ FASE 3: RPG ROAD MAP TIMELINE STYLES
+           ========================================================= */
+        .timeline-roadmap-container {
+            position: relative;
+        }
+        .timeline-roadmap-line {
+            position: absolute;
+            left: 20px;
+            top: 24px;
+            bottom: 24px;
+            width: 4px;
+            background: repeating-linear-gradient(
+                to bottom,
+                #0F2744 0px,
+                #0F2744 8px,
+                transparent 8px,
+                transparent 16px
+            );
+            z-index: 1;
+        }
+        html.dark .timeline-roadmap-line {
+            background: repeating-linear-gradient(
+                to bottom,
+                #F59E0B 0px,
+                #F59E0B 8px,
+                transparent 8px,
+                transparent 16px
+            );
+        }
+        @media (min-width: 768px) {
+            .timeline-roadmap-line {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+        .timeline-checkpoint-node {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* =========================================================
+           🌐 FASE 4: RADAR BLIP PULSE (VISITOR TRACKER)
+           ========================================================= */
+        @keyframes radarPing {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(3.5); opacity: 0; }
+        }
+        .radar-blip-ring {
+            animation: radarPing 2.2s cubic-bezier(0, 0, 0.2, 1) infinite;
+        }
+        .radar-blip-ring-delayed {
+            animation: radarPing 2.2s cubic-bezier(0, 0, 0.2, 1) infinite 1.1s;
+        }
+
+        /* =========================================================
+           ✨ FASE 5: SCROLL REVEAL & PERSPECTIVE TILT
+           ========================================================= */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+        .scroll-reveal.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .tilt-card {
+            transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+            transform-style: preserve-3d;
+        }
+
+        /* =========================================================
+           🎨 FASE 6: VISUAL POLISH — CUSTOM CURSOR, NOISE, STAGGER
+           ========================================================= */
+
+        /* 6.1 Custom Academic Executive Cursor */
+        @media (hover: hover) and (pointer: fine) {
+            *, *::before, *::after {
+                cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cpolygon points='2,2 2,16 6,12 9,18 11,17 8,11 14,11' fill='%230F2744' stroke='%23F59E0B' stroke-width='1.2'/%3E%3C/svg%3E") 2 2, auto !important;
+            }
+            a, button, .brutal-btn, label, select, [role='button'], .nav-jump-btn, .timeline-tab, .pengurus-filter-btn, .sticker-choice-btn, .quick-amt-btn, .glitch-hover, .nav-pill-btn {
+                cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cpolygon points='2,2 2,16 6,12 9,18 11,17 8,11 14,11' fill='%230F2744' stroke='%23F59E0B' stroke-width='1.2'/%3E%3Ccircle cx='14' cy='6' r='3.5' fill='%23F59E0B' stroke='%230F2744' stroke-width='0.8'/%3E%3C/svg%3E") 2 2, pointer !important;
+            }
+        }
+
+        /* 6.2 Subtle Paper Noise Texture Overlay */
+        .brutal-card {
+            position: relative;
+        }
+        .brutal-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+            opacity: 0.025;
+            pointer-events: none;
+            z-index: 0;
+        }
+        html.dark .brutal-card::after {
+            opacity: 0.05;
+        }
+
+        /* 6.3 Stagger Animations */
+        @keyframes cardSlideUp {
+            from { opacity: 0; transform: translateY(16px) scale(0.98); }
+            to   { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .stagger-item {
+            animation: cardSlideUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+        .stagger-item:nth-child(1)  { animation-delay: 0ms; }
+        .stagger-item:nth-child(2)  { animation-delay: 50ms; }
+        .stagger-item:nth-child(3)  { animation-delay: 100ms; }
+        .stagger-item:nth-child(4)  { animation-delay: 150ms; }
+        .stagger-item:nth-child(5)  { animation-delay: 200ms; }
+        .stagger-item:nth-child(6)  { animation-delay: 250ms; }
+        .stagger-item:nth-child(7)  { animation-delay: 300ms; }
+        .stagger-item:nth-child(8)  { animation-delay: 350ms; }
+        .stagger-item:nth-child(n+9) { animation-delay: 400ms; }
+
+        /* 6.4 Button Morph Hover */
+        .brutal-btn {
+            border-radius: 9px;
+            transition: transform 0.15s ease, box-shadow 0.15s ease, border-radius 0.2s cubic-bezier(0.16,1,0.3,1);
+        }
+        .brutal-btn:hover {
+            border-radius: 16px;
+        }
+        .brutal-btn:active {
+            border-radius: 8px;
+        }
+
+        /* 6.5 Section Arrival Transition */
+        @keyframes sectionArrival {
+            0%   { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.6), 4px 4px 0px #0F2744; }
+            50%  { box-shadow: 0 0 0 10px rgba(245, 158, 11, 0), 4px 4px 0px #0F2744; }
+            100% { box-shadow: 4px 4px 0px #0F2744; }
+        }
+        .section-arrival {
+            animation: sectionArrival 0.7s ease-out;
+        }
+
+        /* 6.6 Progress bar pulse */
+        @keyframes progressGlow {
+            0%, 100% { box-shadow: 0 0 6px rgba(245, 158, 11, 0.6); }
+            50%       { box-shadow: 0 0 14px rgba(245, 158, 11, 0.9); }
+        }
+        #donasi-progress-fill {
+            animation: progressGlow 2.5s ease-in-out infinite;
+        }
+
+        /* Academic Modern Neo-Brutalist Classes */
         .brutal-card {
             background: #ffffff;
-            border: 2.5px solid #000;
-            box-shadow: 4px 4px 0px #000;
-            border-radius: 12px;
+            border: 2px solid #0F2744;
+            box-shadow: 4px 4px 0px #0F2744;
+            border-radius: 14px;
             transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
         }
         @media (min-width: 768px) {
             .brutal-card {
-                border-width: 3px;
-                box-shadow: 5px 5px 0px #000;
+                border-width: 2.5px;
+                box-shadow: 5px 5px 0px #0F2744;
             }
         }
 
         .brutal-btn {
-            border: 2px solid #000;
-            box-shadow: 3px 3px 0px #000;
+            border: 2px solid #0F2744;
+            box-shadow: 3px 3px 0px #0F2744;
             font-family: 'Space Grotesk', sans-serif;
             font-weight: 800;
             transition: all 0.15s ease;
@@ -140,16 +471,16 @@
         }
         .brutal-btn:hover {
             transform: translate(-1.5px, -1.5px);
-            box-shadow: 4.5px 4.5px 0px #000;
+            box-shadow: 4.5px 4.5px 0px #0F2744;
         }
         .brutal-btn:active {
             transform: translate(1px, 1px);
-            box-shadow: 1.5px 1.5px 0px #000;
+            box-shadow: 1.5px 1.5px 0px #0F2744;
         }
 
         .brutal-badge {
-            border: 2px solid #000;
-            box-shadow: 2px 2px 0px #000;
+            border: 1.5px solid #0F2744;
+            box-shadow: 2px 2px 0px #0F2744;
             font-family: 'Space Grotesk', sans-serif;
             font-weight: 800;
             display: inline-flex;
@@ -157,23 +488,61 @@
             gap: 4px;
         }
 
-        /* Retro Window Titlebar */
+        /* Editorial Section Divider */
+        .edu-section-divider {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 16px 0 8px 0;
+            user-select: none;
+        }
+        .edu-section-divider .line {
+            flex: 1;
+            height: 1.5px;
+            background: linear-gradient(to right, transparent, #CBD5E1, transparent);
+        }
+        html.dark .edu-section-divider .line {
+            background: linear-gradient(to right, transparent, #2A3B5C, transparent);
+        }
+        .edu-section-divider .pill {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 800;
+            font-size: 10px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border-radius: 9999px;
+            background: #F1F5F9;
+            border: 1px solid #CBD5E1;
+            color: #475569;
+        }
+        html.dark .edu-section-divider .pill {
+            background: #111D38;
+            border-color: #2A3B5C;
+            color: #94A3B8;
+        }
+
+        /* Academic Console Titlebar */
         .window-bar {
-            background: #121212;
-            color: #ffffff;
-            border-bottom: 2.5px solid #000;
-            padding: 6px 10px;
+            background: var(--window-bar-bg);
+            color: var(--window-bar-text);
+            border-bottom: 1.5px solid rgba(255, 255, 255, 0.12);
+            padding: 8px 14px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            font-family: 'Press Start 2P', monospace;
-            font-size: 8px;
-            border-top-left-radius: 9px;
-            border-top-right-radius: 9px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 10px;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
         }
         @media (min-width: 640px) {
             .window-bar {
-                font-size: 9px;
+                font-size: 11px;
+                padding: 9px 16px;
             }
         }
 
@@ -414,68 +783,87 @@
     <div class="crt-overlay" id="crt-overlay"></div>
 
     <!-- ==========================================
-         TOP TICKER: HUMAS / PR LIVE DISPATCH & VISITOR ORIGIN
+         TOP TICKER: WARTA RESMI & LIVE DISPATCH
          ========================================== -->
-    <div class="bg-retro-yellow border-b-2.5 border-black py-1 overflow-hidden sticky top-0 z-50 w-full">
+    <div class="bg-slate-900 border-b border-slate-800 py-1.5 overflow-hidden sticky top-0 z-50 w-full text-slate-200 shadow-sm">
         <div class="marquee-wrapper flex items-center">
-            <div class="marquee-content font-display font-black text-xs tracking-wider uppercase text-black flex items-center gap-6" id="pr-marquee-content">
-                <span class="inline-flex items-center gap-1.5 bg-black text-retro-yellow px-2 py-0.5 rounded font-pixel text-[8px]">
-                    <i class="fa-solid fa-bolt animate-bounce"></i> PR LIVE
+            <div class="marquee-content font-sans font-semibold text-xs tracking-wider text-slate-200 flex items-center gap-6" id="pr-marquee-content">
+                <span class="inline-flex items-center gap-1.5 bg-amber-500 text-slate-950 font-black px-2.5 py-0.5 rounded-full text-[9px] uppercase tracking-wider shadow-sm">
+                    <i class="fa-solid fa-graduation-cap text-[10px]"></i> WARTA AKADEMIK
                 </span>
-                <span id="top-visitor-ticker">🌍 SELAMAT DATANG PENGUNJUNG DARI <strong id="top-country-name">KENYA & SELURUH DUNIA</strong>!</span>
-                <span>⚡ OSIS SMKN BATUJAYA KABINET MUDA BERSATU 2026/2027</span>
-                <span>★ PORTAL 3-KOLOM RESMI: INBOUND PR, AGENDA SETAHUN, & DONASI 1 MENU QRIS/E-WALLET</span>
-                <span>📢 SMURFCUP 2026 RESMI DIBUKA & KOTAK ASPIRASI ONLINE AKTIF 24 JAM!</span>
+                <span id="top-visitor-ticker">🌍 SELAMAT DATANG PENGUNJUNG DARI <strong id="top-country-name" class="text-amber-400 font-bold">KENYA & SELURUH DUNIA</strong>!</span>
+                <span>🏛️ PORTAL RESMI OSIS SMKN BATUJAYA — KABINET MUDA BERSATU PERIODE 2026/2027</span>
+                <span>📚 TRANSPARANSI AGENDA SETAHUN, PROGRAM KERJA UNGGULAN & KOTAK DONASI RESMI SEKOLAH</span>
+                <span>📢 KOTAK ASPIRASI ONLINE AKTIF 24 JAM UNTUK KEMAJUAN SARANA & KREATIFITAS SISWA</span>
             </div>
         </div>
     </div>
 
 
     <!-- ==========================================
-         TOP HEADER & RETRO HUD CONTROLS
+         TOP HEADER: ACADEMIC BRANDING & PORTAL CONTROLS
          ========================================== -->
-    <header class="bg-retro-paper border-b-2.5 border-black w-full">
-        <div class="max-w-[1440px] mx-auto px-3 sm:px-6 py-2 sm:py-3">
-            <div class="flex items-center justify-between gap-2 sm:gap-4">
+    <header class="bg-white dark:bg-[#0C1530] border-b-2 border-slate-200 dark:border-slate-800 w-full transition-colors sticky top-[31px] z-40 backdrop-blur-md bg-white/95 dark:bg-[#0C1530]/95">
+        <div class="max-w-[1440px] mx-auto px-3 sm:px-6 py-2.5 sm:py-3">
+            <div class="flex items-center justify-between gap-3">
                 
                 <!-- School & OSIS Brand -->
-                <a href="#feed-hero" class="flex items-center gap-2 sm:gap-3 group">
-                    <div class="w-9 h-9 sm:w-11 sm:h-11 p-0.5 bg-retro-yellow border-2 border-black shadow-brutal-sm rounded-lg group-hover:rotate-3 transition-transform overflow-hidden flex items-center justify-center shrink-0">
-                        <img id="nav-logo-img" src="https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=120&auto=format&fit=crop&q=80" alt="Logo OSIS" class="w-full h-full object-cover rounded">
+                <a href="#feed-hero" class="flex items-center gap-2.5 sm:gap-3 group shrink-0">
+                    <div class="w-10 h-10 sm:w-11 sm:h-11 p-0.5 bg-gradient-to-br from-amber-400 to-amber-600 border-2 border-[#0F2744] dark:border-amber-400 shadow-sm rounded-xl group-hover:scale-105 transition-transform overflow-hidden flex items-center justify-center shrink-0">
+                        <img id="nav-logo-img" src="https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=120&auto=format&fit=crop&q=80" alt="Logo OSIS" class="w-full h-full object-cover rounded-lg">
                     </div>
                     <div>
-                        <div class="flex items-center gap-1.5">
-                            <span id="nav-school-name" class="font-display font-black text-sm sm:text-lg tracking-tight text-black group-hover:text-retro-pink transition-colors">OSIS SMKN BATUJAYA</span>
-                            <span class="hidden sm:inline-block bg-retro-lime text-black border border-black px-1 py-0.2 rounded font-pixel text-[7px] font-bold">3-COLUMN</span>
+                        <div class="flex items-center gap-2">
+                            <span id="nav-school-name" class="font-display font-black text-sm sm:text-lg tracking-tight text-[#0F2744] dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">OSIS SMKN BATUJAYA</span>
+                            <span class="hidden sm:inline-block bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-700 px-2 py-0.5 rounded-full font-sans text-[9px] font-bold tracking-wide">
+                                <i class="fa-solid fa-circle-check text-[8px] mr-0.5 text-emerald-500"></i> TERVERIFIKASI
+                            </span>
                         </div>
-                        <span id="nav-cabinet-name" class="text-[10px] sm:text-[11px] font-mono font-bold text-zinc-600 uppercase block">Kabinet Muda Bersatu</span>
+                        <span id="nav-cabinet-name" class="text-[10px] sm:text-[11px] font-sans font-semibold text-slate-500 dark:text-slate-400 block">Kabinet Muda Bersatu • Periode 2026/2027</span>
                     </div>
                 </a>
 
-                <!-- Controls: Detected Country Badge, SFX, CRT, Donate Quick Jump -->
+                <!-- Desktop Quick Section Pills (Visible on large screens) -->
+                <nav class="hidden xl:flex items-center gap-1 font-display font-bold text-xs text-slate-600 dark:text-slate-300">
+                    <a href="#feed-hero" class="nav-pill-btn px-2.5 py-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">Beranda</a>
+                    <a href="#timeline-setahun" class="nav-pill-btn px-2.5 py-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">Agenda</a>
+                    <a href="#proker-section" class="nav-pill-btn px-2.5 py-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">Proker</a>
+                    <a href="#tentang-section" class="nav-pill-btn px-2.5 py-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">Visi & Misi</a>
+                    <a href="#struktur-section" class="nav-pill-btn px-2.5 py-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">Pengurus</a>
+                    <a href="#galeri-section" class="nav-pill-btn px-2.5 py-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">Galeri</a>
+                    <a href="#aspirasi-section" class="nav-pill-btn px-2.5 py-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">Aspirasi</a>
+                </nav>
+
+                <!-- Controls: Live Geo Tag, Sound, Dark Mode, Quick Donate -->
                 <div class="flex items-center gap-1.5 sm:gap-2">
                     
                     <!-- Live Detected Location Tag (e.g. Kenya, Indonesia) -->
-                    <div id="hud-visitor-badge" class="flex items-center gap-1 bg-white border border-black px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-md text-[10px] sm:text-xs font-mono shadow-brutal-sm">
+                    <div id="hud-visitor-badge" class="flex items-center gap-1.5 bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 px-2 py-1 sm:px-2.5 sm:py-1 rounded-lg text-[10px] sm:text-xs font-mono shadow-sm">
                         <span id="hud-flag-emoji" class="text-xs sm:text-sm">🌍</span>
-                        <span id="hud-country-text" class="font-bold text-black truncate max-w-[85px] sm:max-w-none">Mendeteksi...</span>
+                        <span id="hud-country-text" class="font-bold text-slate-800 dark:text-slate-200 truncate max-w-[85px] sm:max-w-none">Mendeteksi...</span>
                     </div>
 
-                    <!-- SFX Toggle -->
-                    <button id="sfx-toggle-btn" class="bg-zinc-900 hover:bg-zinc-800 text-retro-yellow px-2 py-1 sm:px-2.5 sm:py-1.5 rounded-lg border border-black font-pixel text-[8px] flex items-center gap-1 shadow-brutal-sm transition-all" title="Toggle Sound">
-                        <i class="fa-solid fa-volume-high" id="sfx-icon"></i>
-                        <span id="sfx-status" class="hidden sm:inline">SFX: ON</span>
+                    <!-- SFX Sound Toggle -->
+                    <button id="sfx-toggle-btn" class="bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-amber-400 px-2.5 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 font-sans text-xs font-bold flex items-center gap-1.5 shadow-sm transition-all" title="Toggle Sound Feedback">
+                        <i class="fa-solid fa-volume-high text-xs" id="sfx-icon"></i>
+                        <span id="sfx-status" class="hidden sm:inline">SFX</span>
                     </button>
 
-                    <!-- CRT Scanlines Toggle -->
-                    <button id="crt-toggle-btn" class="bg-zinc-900 hover:bg-zinc-800 text-retro-cyan px-2 py-1 sm:px-2.5 sm:py-1.5 rounded-lg border border-black font-pixel text-[8px] flex items-center gap-1 shadow-brutal-sm transition-all" title="Toggle CRT">
+                    <!-- CRT Filter Toggle (Hidden for clean academic presentation) -->
+                    <button id="crt-toggle-btn" class="hidden" title="Toggle CRT">
                         <i class="fa-solid fa-tv"></i>
-                        <span id="crt-status" class="hidden sm:inline">CRT: OFF</span>
+                        <span id="crt-status">CRT: OFF</span>
+                    </button>
+
+                    <!-- Theme / Dark Mode Toggle with Academic Amber Accent -->
+                    <button id="theme-toggle-btn" class="bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-amber-500 px-2.5 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 font-sans text-xs font-bold flex items-center gap-1.5 shadow-sm transition-all" title="Ganti Tema Terang/Gelap">
+                        <i class="fa-solid fa-moon text-xs" id="theme-icon"></i>
+                        <span id="theme-status" class="hidden sm:inline">TEMA</span>
                     </button>
 
                     <!-- Quick Donate CTA -->
-                    <a href="#kolom-donasi" class="brutal-btn px-2.5 py-1 sm:px-3 sm:py-1.5 bg-retro-pink text-white rounded-lg text-[11px] sm:text-xs font-bold shadow-brutal-sm">
-                        <i class="fa-solid fa-qrcode mr-1"></i>
+                    <a href="#kolom-donasi" class="brutal-btn px-3 py-1.5 bg-amber-500 hover:bg-amber-400 text-slate-950 border-2 border-[#0F2744] dark:border-amber-400 rounded-lg text-xs font-bold shadow-academic transition-all">
+                        <i class="fa-solid fa-hand-holding-heart mr-1.5"></i>
                         <span>Donasi</span>
                     </a>
                 </div>
@@ -502,37 +890,39 @@
                 <!-- 1.1 OSIS ID Card & Status -->
                 <div class="brutal-card bg-white p-4">
                     <div class="window-bar -mx-4 -mt-4 mb-3">
-                        <span>PR_ID_CARD.RAW</span>
-                        <span class="text-retro-lime">● LIVE</span>
+                        <span class="flex items-center gap-1.5"><i class="fa-solid fa-id-card text-amber-400"></i> IDENTITAS_KABINET</span>
+                        <span class="text-emerald-400 font-bold">● AKTIF</span>
                     </div>
 
                     <div class="flex items-center gap-3">
-                        <div class="w-13 h-13 sm:w-14 sm:h-14 rounded-lg bg-retro-yellow border-2 border-black p-0.5 overflow-hidden shrink-0 shadow-brutal-sm">
-                            <img id="inbound-logo-img" src="https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=120&auto=format&fit=crop&q=80" alt="Logo" class="w-full h-full object-cover rounded">
+                        <div class="w-13 h-13 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-amber-400 to-amber-600 border-2 border-[#0F2744] dark:border-amber-400 p-0.5 overflow-hidden shrink-0 shadow-sm">
+                            <img id="inbound-logo-img" src="https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=120&auto=format&fit=crop&q=80" alt="Logo" class="w-full h-full object-cover rounded-lg">
                         </div>
                         <div>
-                            <span class="brutal-badge bg-retro-lime text-black px-1.5 py-0.5 rounded text-[8px] font-pixel">STATUS: AKTIF</span>
-                            <h3 class="font-display font-black text-sm sm:text-base text-black mt-1 leading-snug">OSIS SMKN BATUJAYA</h3>
-                            <p class="font-mono text-[11px] text-zinc-500">Kabinet Muda Bersatu</p>
+                            <span class="inline-flex items-center gap-1 bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-700 px-2 py-0.5 rounded-full text-[9px] font-sans font-bold">
+                                <i class="fa-solid fa-check text-[8px]"></i> STATUS RESMI
+                            </span>
+                            <h3 class="font-display font-black text-sm sm:text-base text-[#0F2744] dark:text-white mt-1 leading-snug">OSIS SMKN BATUJAYA</h3>
+                            <p class="font-sans text-[11px] font-semibold text-slate-500 dark:text-slate-400">Kabinet Muda Bersatu 2026/2027</p>
                         </div>
                     </div>
 
-                    <p class="font-sans text-xs text-zinc-600 mt-3 pt-2 border-t-2 border-dashed border-zinc-200 leading-relaxed italic">
-                        "Wadah resmi sinergi, aksi, dan Public Relations siswa SMKN Batujaya."
+                    <p class="font-sans text-xs text-slate-600 dark:text-slate-300 mt-3 pt-2.5 border-t border-slate-200 dark:border-slate-800 leading-relaxed italic">
+                        "Wadah resmi aspirasi, kepemimpinan siswa, dan sinergi Public Relations SMKN Batujaya."
                     </p>
                 </div>
 
 
                 <!-- 1.2 FITUR SPESIFIK: HIT COUNTER & VISITOR TRACKER (KENYA & GLOBAL) -->
-                <div class="brutal-card bg-retro-dark text-white p-4 border-2.5 border-retro-yellow">
-                    <div class="window-bar -mx-4 -mt-4 mb-3 bg-zinc-950 text-retro-yellow">
-                        <span>VISITOR_RADAR.LOG</span>
-                        <span class="text-retro-lime animate-pulse">● RADAR ON</span>
+                <div class="brutal-card bg-slate-900 text-white p-4 border-2 border-slate-800">
+                    <div class="window-bar -mx-4 -mt-4 mb-3 bg-slate-950 text-amber-400">
+                        <span class="flex items-center gap-1.5"><i class="fa-solid fa-satellite text-sky-400"></i> RADAR_PENGUNJUNG</span>
+                        <span class="text-emerald-400 font-bold animate-pulse text-[9px]">● LIVE MONITOR</span>
                     </div>
 
                     <!-- Total Visitors Odometer -->
-                    <div class="text-center pb-3 border-b border-zinc-800">
-                        <span class="font-mono text-[10px] text-zinc-400 font-bold block mb-1">TOTAL PENGUNJUNG SITUS:</span>
+                    <div class="text-center pb-3 border-b border-slate-800">
+                        <span class="font-sans text-[10px] text-slate-400 font-bold uppercase tracking-wider block mb-1">TOTAL KUNJUNGAN PORTAL:</span>
                         <div id="visitor-odometer" class="flex justify-center items-center py-1">
                             <!-- Populated with retro digits by js/app.js -->
                             <span class="odometer-digit">0</span>
@@ -542,30 +932,70 @@
                             <span class="odometer-digit">3</span>
                             <span class="odometer-digit">5</span>
                         </div>
-                        <span class="font-mono text-[10px] text-retro-lime mt-1 block">
-                            <i class="fa-solid fa-users mr-1"></i> <span id="online-users-count">8</span> Pengunjung Aktif Sekarang
+                        <span class="font-sans text-[11px] text-emerald-400 font-semibold mt-1.5 block">
+                            <i class="fa-solid fa-users mr-1"></i> <span id="online-users-count" class="font-bold">8</span> Pengunjung Aktif Saat Ini
                         </span>
                     </div>
 
                     <!-- Detected Location Card (Handles Kenya, Indonesia, etc.) -->
-                    <div class="mt-3 p-2.5 bg-zinc-900 border border-zinc-700 rounded-lg">
-                        <div class="flex items-center justify-between text-[10px] font-mono text-zinc-400 mb-1">
+                    <div class="mt-3 p-2.5 bg-slate-950/80 border border-slate-800 rounded-xl">
+                        <div class="flex items-center justify-between text-[10px] font-sans text-slate-400 mb-1 font-semibold">
                             <span>LOKASI ANDA TERDETEKSI:</span>
-                            <span class="text-retro-cyan font-bold">LIVE GEO</span>
+                            <span class="text-amber-400 font-bold">LIVE GEO</span>
                         </div>
-                        <div class="flex items-center gap-2">
+                        <div class="flex items-center gap-2.5">
                             <span id="detected-country-flag" class="text-2xl shrink-0">🌍</span>
                             <div>
-                                <h4 id="detected-country-name" class="font-display font-black text-sm text-retro-yellow leading-tight">Mendeteksi Negara...</h4>
-                                <p id="detected-city-ip" class="font-mono text-[10px] text-zinc-400">Memeriksa IP & Lokasi...</p>
+                                <h4 id="detected-country-name" class="font-display font-black text-sm text-amber-400 leading-tight">Mendeteksi Negara...</h4>
+                                <p id="detected-city-ip" class="font-sans text-[10px] text-slate-400">Memeriksa IP & Lokasi...</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Interactive World Radar Sweep Screen -->
+                    <div class="mt-3 relative bg-slate-950 border border-slate-800 rounded-xl p-2.5 overflow-hidden shadow-inner">
+                        <div class="flex items-center justify-between text-[9px] font-sans font-semibold text-slate-400 mb-1.5">
+                            <span class="flex items-center gap-1.5"><i class="fa-solid fa-satellite text-sky-400"></i> GLOBAL RADAR SWEEP</span>
+                            <span class="text-emerald-400 text-[8px] animate-pulse">● SIGNAL LOCK</span>
+                        </div>
+                        <div class="relative w-full h-24 bg-[#070D1F] rounded-lg border border-slate-800 flex items-center justify-center overflow-hidden">
+                            <!-- Radar concentric rings -->
+                            <div class="absolute w-40 h-40 rounded-full border border-dashed border-slate-800"></div>
+                            <div class="absolute w-28 h-28 rounded-full border border-slate-800"></div>
+                            <div class="absolute w-14 h-14 rounded-full border border-sky-500/20"></div>
+                            <div class="absolute w-full h-[1px] bg-slate-800/60"></div>
+                            <div class="absolute h-full w-[1px] bg-slate-800/60"></div>
+                            
+                            <!-- Rotating Radar Sweep Beam -->
+                            <div class="absolute inset-0 origin-center animate-[spin_4s_linear_infinite] pointer-events-none" style="background: conic-gradient(from 0deg, transparent 0deg, transparent 270deg, rgba(2, 132, 199, 0.25) 360deg);"></div>
+
+                            <!-- Animated Target Blips -->
+                            <!-- Blip 1: Kenya / East Africa -->
+                            <div class="absolute top-[48%] left-[45%] -translate-x-1/2 -translate-y-1/2 cursor-pointer group" title="Kenya Signal Locked">
+                                <span class="absolute w-5 h-5 -left-1.5 -top-1.5 bg-amber-400/40 rounded-full radar-blip-ring"></span>
+                                <span class="relative block w-2 h-2 bg-amber-400 rounded-full shadow-[0_0_8px_#F59E0B]"></span>
+                                <span class="absolute -bottom-3 left-1/2 -translate-x-1/2 text-[7px] font-mono text-amber-400 font-bold">KE</span>
+                            </div>
+
+                            <!-- Blip 2: Indonesia / SE Asia -->
+                            <div class="absolute top-[54%] left-[74%] -translate-x-1/2 -translate-y-1/2 cursor-pointer group" title="Indonesia Signal Locked">
+                                <span class="absolute w-5 h-5 -left-1.5 -top-1.5 bg-sky-400/40 rounded-full radar-blip-ring-delayed"></span>
+                                <span class="relative block w-2 h-2 bg-sky-400 rounded-full shadow-[0_0_8px_#38BDF8]"></span>
+                                <span class="absolute -bottom-3 left-1/2 -translate-x-1/2 text-[7px] font-mono text-sky-400 font-bold">ID</span>
+                            </div>
+
+                            <!-- Blip 3: Global / US -->
+                            <div class="absolute top-[32%] left-[25%] -translate-x-1/2 -translate-y-1/2 cursor-pointer group" title="Americas Signal">
+                                <span class="relative block w-1.5 h-1.5 bg-indigo-400 rounded-full shadow-[0_0_6px_#818CF8]"></span>
+                                <span class="absolute -bottom-3 left-1/2 -translate-x-1/2 text-[7px] font-mono text-indigo-400 font-bold">US</span>
                             </div>
                         </div>
                     </div>
 
                     <!-- Recent Global Visitors Feed -->
                     <div class="mt-3">
-                        <span class="font-mono text-[9px] font-bold text-zinc-400 uppercase tracking-wider block mb-1.5">PENGUNJUNG TERBARU DARI DUNIA:</span>
-                        <div class="space-y-1.5 font-mono text-[10px]" id="recent-visitors-list">
+                        <span class="font-sans text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1.5">PENGUNJUNG TERBARU DARI DUNIA:</span>
+                        <div class="space-y-1.5 font-sans text-[11px]" id="recent-visitors-list">
                             <!-- Populated by js/app.js -->
                         </div>
                     </div>
@@ -574,38 +1004,38 @@
 
                 <!-- 1.3 Inbound Fast Navigation -->
                 <div class="brutal-card bg-white p-4">
-                    <div class="window-bar -mx-4 -mt-4 mb-3 bg-zinc-900 text-retro-yellow">
-                        <span>PORTAL_NAV.DIR</span>
-                        <span>[6]</span>
+                    <div class="window-bar -mx-4 -mt-4 mb-3 bg-slate-900 text-amber-400">
+                        <span class="flex items-center gap-1.5"><i class="fa-solid fa-compass text-amber-400"></i> DIREKTORI_NAVIGASI</span>
+                        <span class="text-slate-400 font-mono text-[9px]">[7 SEKSI]</span>
                     </div>
 
                     <nav class="space-y-1.5 font-display font-bold text-xs">
-                        <a href="#feed-hero" class="nav-jump-btn flex items-center justify-between p-2 rounded-lg hover:bg-retro-yellow border-2 border-transparent hover:border-black transition-all">
-                            <span class="flex items-center gap-2"><i class="fa-solid fa-house text-zinc-500"></i> Beranda & Hero</span>
-                            <span class="font-mono text-[10px] text-zinc-400">#01</span>
+                        <a href="#feed-hero" class="nav-jump-btn flex items-center justify-between p-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 border-2 border-transparent hover:border-[#0F2744] dark:hover:border-slate-700 transition-all">
+                            <span class="flex items-center gap-2"><i class="fa-solid fa-house text-slate-400"></i> Beranda & Ringkasan</span>
+                            <span class="font-mono text-[10px] text-slate-400">#01</span>
                         </a>
-                        <a href="#timeline-setahun" class="nav-jump-btn flex items-center justify-between p-2 rounded-lg bg-retro-yellow/40 hover:bg-retro-yellow border-2 border-black transition-all">
-                            <span class="flex items-center gap-2"><i class="fa-solid fa-calendar-days text-retro-pink"></i> Timeline Humas (Setahun)</span>
-                            <span class="brutal-badge bg-retro-pink text-white px-1.5 py-0.2 rounded text-[8px] font-pixel">HOT</span>
+                        <a href="#timeline-setahun" class="nav-jump-btn flex items-center justify-between p-2.5 rounded-xl bg-amber-50 dark:bg-amber-950/40 hover:bg-amber-100 dark:hover:bg-amber-900/50 border-2 border-amber-400/80 transition-all">
+                            <span class="flex items-center gap-2 text-slate-900 dark:text-amber-200"><i class="fa-solid fa-calendar-check text-amber-600 dark:text-amber-400"></i> Timeline Agenda (Setahun)</span>
+                            <span class="bg-amber-500 text-slate-950 px-2 py-0.5 rounded-full text-[9px] font-sans font-black">HOT</span>
                         </a>
-                        <a href="#proker-section" class="nav-jump-btn flex items-center justify-between p-2 rounded-lg hover:bg-retro-yellow border-2 border-transparent hover:border-black transition-all">
-                            <span class="flex items-center gap-2"><i class="fa-solid fa-award text-zinc-500"></i> Program Kerja Unggulan</span>
-                            <span class="font-mono text-[10px] text-zinc-400">#03</span>
+                        <a href="#proker-section" class="nav-jump-btn flex items-center justify-between p-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 border-2 border-transparent hover:border-[#0F2744] dark:hover:border-slate-700 transition-all">
+                            <span class="flex items-center gap-2"><i class="fa-solid fa-award text-slate-400"></i> Program Kerja Unggulan</span>
+                            <span class="font-mono text-[10px] text-slate-400">#03</span>
                         </a>
-                        <a href="#tentang-section" class="nav-jump-btn flex items-center justify-between p-2 rounded-lg hover:bg-retro-yellow border-2 border-transparent hover:border-black transition-all">
-                            <span class="flex items-center gap-2"><i class="fa-solid fa-quote-left text-zinc-500"></i> Visi Misi & Sambutan</span>
-                            <span class="font-mono text-[10px] text-zinc-400">#04</span>
+                        <a href="#tentang-section" class="nav-jump-btn flex items-center justify-between p-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 border-2 border-transparent hover:border-[#0F2744] dark:hover:border-slate-700 transition-all">
+                            <span class="flex items-center gap-2"><i class="fa-solid fa-landmark text-slate-400"></i> Visi Misi & Sambutan</span>
+                            <span class="font-mono text-[10px] text-slate-400">#04</span>
                         </a>
-                        <a href="#struktur-section" class="nav-jump-btn flex items-center justify-between p-2 rounded-lg hover:bg-retro-yellow border-2 border-transparent hover:border-black transition-all">
-                            <span class="flex items-center gap-2"><i class="fa-solid fa-users text-zinc-500"></i> Struktur Pengurus</span>
-                            <span class="font-mono text-[10px] text-zinc-400">#05</span>
+                        <a href="#struktur-section" class="nav-jump-btn flex items-center justify-between p-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 border-2 border-transparent hover:border-[#0F2744] dark:hover:border-slate-700 transition-all">
+                            <span class="flex items-center gap-2"><i class="fa-solid fa-users text-slate-400"></i> Struktur Pengurus</span>
+                            <span class="font-mono text-[10px] text-slate-400">#05</span>
                         </a>
-                        <a href="#galeri-section" class="nav-jump-btn flex items-center justify-between p-2 rounded-lg hover:bg-retro-yellow border-2 border-transparent hover:border-black transition-all">
-                            <span class="flex items-center gap-2"><i class="fa-solid fa-camera-retro text-zinc-500"></i> Galeri Dokumentasi</span>
-                            <span class="font-mono text-[10px] text-zinc-400">#06</span>
+                        <a href="#galeri-section" class="nav-jump-btn flex items-center justify-between p-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 border-2 border-transparent hover:border-[#0F2744] dark:hover:border-slate-700 transition-all">
+                            <span class="flex items-center gap-2"><i class="fa-solid fa-camera text-slate-400"></i> Galeri Dokumentasi</span>
+                            <span class="font-mono text-[10px] text-slate-400">#06</span>
                         </a>
-                        <a href="#aspirasi-section" class="nav-jump-btn flex items-center justify-between p-2 rounded-lg bg-retro-cyan hover:bg-cyan-300 border-2 border-black transition-all mt-2 text-black">
-                            <span class="flex items-center gap-2"><i class="fa-solid fa-comment-dots"></i> Kotak Aspirasi Online</span>
+                        <a href="#aspirasi-section" class="nav-jump-btn flex items-center justify-between p-2.5 rounded-xl bg-sky-50 dark:bg-sky-950/40 hover:bg-sky-100 dark:hover:bg-sky-900/50 border-2 border-sky-400/80 transition-all mt-2 text-sky-900 dark:text-sky-200">
+                            <span class="flex items-center gap-2"><i class="fa-solid fa-comment-dots text-sky-600 dark:text-sky-400"></i> Kotak Aspirasi Online</span>
                             <i class="fa-solid fa-arrow-right text-[10px]"></i>
                         </a>
                     </nav>
@@ -613,34 +1043,34 @@
 
 
                 <!-- 1.4 Inbound Hotline & Public Relations Media Desk -->
-                <div class="brutal-card bg-zinc-950 text-white p-4">
-                    <div class="window-bar -mx-4 -mt-4 mb-3 bg-zinc-900 text-retro-cyan">
-                        <span>INBOUND_HOTLINE.SYS</span>
-                        <span>[24/7]</span>
+                <div class="brutal-card bg-slate-900 text-white p-4 border-2 border-slate-800">
+                    <div class="window-bar -mx-4 -mt-4 mb-3 bg-slate-950 text-sky-400">
+                        <span class="flex items-center gap-1.5"><i class="fa-solid fa-headset text-sky-400"></i> LAYANAN_HUMAS_24JAM</span>
+                        <span class="text-amber-400 text-[9px] font-mono">[HOTLINE]</span>
                     </div>
 
-                    <p class="font-sans text-xs text-zinc-300 mb-3">
-                        Pusat layanan informasi publik, izin liputan media, kerjasama ekstrakurikuler & kemitraan sekolah:
+                    <p class="font-sans text-xs text-slate-300 mb-3 leading-relaxed">
+                        Pusat layanan informasi resmi, izin liputan kegiatan, audiensi ekstrakurikuler & kemitraan sekolah:
                     </p>
 
-                    <div class="space-y-2 font-mono text-xs">
-                        <a href="https://wa.me/6281234567890?text=Halo%20Humas%20OSIS%20SMKN%20Batujaya,%20saya%20ingin%20bertanya%20mengenai..." target="_blank" class="w-full brutal-btn py-2 bg-emerald-500 text-white rounded-lg text-xs flex items-center justify-center gap-2">
+                    <div class="space-y-2 font-sans text-xs font-semibold">
+                        <a href="https://wa.me/6281234567890?text=Halo%20Humas%20OSIS%20SMKN%20Batujaya,%20saya%20ingin%20bertanya%20mengenai..." target="_blank" class="w-full brutal-btn py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl text-xs flex items-center justify-center gap-2 shadow-sm">
                             <i class="fa-brands fa-whatsapp text-sm"></i>
                             <span>WhatsApp Hotline Humas</span>
                         </a>
                         
-                        <a href="mailto:osis@smknbatujaya.sch.id" class="w-full brutal-btn py-2 bg-zinc-800 text-retro-cyan rounded-lg text-xs flex items-center justify-center gap-2 border-zinc-700">
+                        <a href="mailto:osis@smknbatujaya.sch.id" class="w-full brutal-btn py-2.5 bg-slate-800 hover:bg-slate-700 text-sky-300 rounded-xl text-xs flex items-center justify-center gap-2 border border-slate-700 shadow-sm">
                             <i class="fa-solid fa-envelope"></i>
                             <span>osis@smknbatujaya.sch.id</span>
                         </a>
                     </div>
 
-                    <div class="mt-4 pt-3 border-t border-zinc-800 flex items-center justify-between text-zinc-400">
-                        <span class="font-mono text-[10px]">MEDIA RESMI:</span>
+                    <div class="mt-4 pt-3 border-t border-slate-800 flex items-center justify-between text-slate-400">
+                        <span class="font-sans text-[10px] font-bold uppercase tracking-wider">MEDIA RESMI:</span>
                         <div class="flex gap-2">
-                            <a id="inbound-ig" href="#" target="_blank" class="w-7 h-7 rounded bg-zinc-800 hover:bg-retro-pink hover:text-white flex items-center justify-center text-xs transition-colors"><i class="fa-brands fa-instagram"></i></a>
-                            <a id="inbound-yt" href="#" target="_blank" class="w-7 h-7 rounded bg-zinc-800 hover:bg-retro-pink hover:text-white flex items-center justify-center text-xs transition-colors"><i class="fa-brands fa-youtube"></i></a>
-                            <a id="inbound-tiktok" href="#" target="_blank" class="w-7 h-7 rounded bg-zinc-800 hover:bg-retro-cyan hover:text-black flex items-center justify-center text-xs transition-colors"><i class="fa-brands fa-tiktok"></i></a>
+                            <a id="inbound-ig" href="#" target="_blank" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-amber-500 hover:text-slate-950 flex items-center justify-center text-xs transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                            <a id="inbound-yt" href="#" target="_blank" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-red-600 hover:text-white flex items-center justify-center text-xs transition-colors"><i class="fa-brands fa-youtube"></i></a>
+                            <a id="inbound-tiktok" href="#" target="_blank" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-sky-500 hover:text-slate-950 flex items-center justify-center text-xs transition-colors"><i class="fa-brands fa-tiktok"></i></a>
                         </div>
                     </div>
                 </div>
@@ -654,69 +1084,92 @@
                  ########################################## -->
             <section class="col-section-2 col-span-1 lg:col-span-6 space-y-6 sm:space-y-8" id="kolom-konten-utama">
 
-                <!-- 2.1 Hero Banner Console -->
-                <div id="feed-hero" class="brutal-card bg-white p-4 sm:p-7">
-                    <div class="window-bar -mx-4 -mt-4 sm:-mx-7 sm:-mt-7 mb-4 sm:mb-6">
-                        <div class="flex items-center gap-1.5">
-                            <i class="fa-solid fa-terminal text-retro-yellow"></i>
-                            <span>MAIN_DISPATCH_v2026.EXE</span>
+                <!-- 2.1 Hero Banner Console (Educational Theme) -->
+                <div id="feed-hero" class="brutal-card bg-white p-4 sm:p-7 relative overflow-hidden scroll-reveal tilt-card">
+                    <!-- Subtle Academic Matrix Grid Layer -->
+                    <div class="hero-radar-grid absolute inset-0 pointer-events-none opacity-30 z-0"></div>
+
+                    <div class="relative z-10">
+                        <div class="window-bar -mx-4 -mt-4 sm:-mx-7 sm:-mt-7 mb-4 sm:mb-6">
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-graduation-cap text-amber-400 text-xs"></i>
+                                <span>PORTAL_AKADEMIK_v2026</span>
+                            </div>
+                            <span class="text-amber-400 font-bold">PUSAT INFORMASI</span>
                         </div>
-                        <span class="text-retro-lime font-bold">PR PORTAL</span>
-                    </div>
 
-                    <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-retro-yellow border-2 border-black shadow-brutal-sm font-pixel text-[8px] sm:text-[9px] mb-2 sm:mb-3">
-                        <span class="w-2 h-2 rounded-full bg-retro-pink animate-ping"></span>
-                        <span id="hero-badge">★ PORTAL RESMI HUMAS & OSIS 2026/2027 ★</span>
-                    </div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-2 sm:mb-3">
+                            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 dark:bg-amber-950/60 border border-amber-300 dark:border-amber-700 text-amber-900 dark:text-amber-200 text-xs font-bold shadow-sm morph-border">
+                                <span class="w-2 h-2 rounded-full bg-amber-500 animate-ping"></span>
+                                <span id="hero-badge">★ PORTAL RESMI HUMAS & OSIS 2026/2027 ★</span>
+                            </div>
+                            <span class="font-sans text-[10px] font-semibold text-slate-500 bg-slate-100 dark:bg-slate-800 px-2.5 py-0.5 rounded-full border border-slate-200 dark:border-slate-700">STATUS: TERVERIFIKASI</span>
+                        </div>
 
-                    <h1 class="font-display font-black text-2xl sm:text-4xl text-black leading-tight">
-                        <span id="hero-title-main" class="block">BERGERAK NYATA,</span>
-                        <span id="hero-title-highlight" class="inline-block bg-retro-pink text-white px-2 sm:px-3 py-0.5 mt-1 border-2 border-black shadow-brutal rotate-[-1deg]">
-                            BERSUARA BERSAMA!
-                        </span>
-                    </h1>
+                        <h1 class="font-display font-black text-2xl sm:text-4xl text-[#0F2744] dark:text-white leading-tight">
+                            <span id="hero-title-main" class="block">BERGERAK NYATA,</span>
+                            <span id="hero-title-highlight" class="inline-block bg-[#0F2744] dark:bg-amber-500 text-white dark:text-slate-950 px-3 sm:px-4 py-1 mt-1 rounded-xl shadow-academic border-2 border-[#0F2744] dark:border-amber-400 glitch-hover cursor-pointer" title="OSIS SMKN Batujaya">
+                                BERSUARA BERSAMA!
+                            </span>
+                        </h1>
 
-                    <p id="hero-desc" class="font-sans text-xs sm:text-sm text-zinc-700 font-medium leading-relaxed mt-3 sm:mt-4">
-                        Selamat datang di official website profil & Public Relations OSIS SMKN Batujaya. Jelajahi karya kami sepanjang tahun, dukung program kerja melalui menu donasi QRIS & E-Wallet, dan sampaikan aspirasimu!
-                    </p>
+                        <p id="hero-desc" class="font-sans text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-normal leading-relaxed mt-3 sm:mt-4">
+                            Selamat datang di official website profil & Public Relations OSIS SMKN Batujaya. Jelajahi karya kami sepanjang tahun, dukung program kerja melalui menu donasi QRIS & E-Wallet, dan sampaikan aspirasimu!
+                        </p>
 
-                    <!-- Hero Banner Photo -->
-                    <div class="mt-4 sm:mt-5 brutal-card p-2 bg-white border-2 border-black">
-                        <div class="relative aspect-[16/9] overflow-hidden rounded bg-zinc-900 border border-black">
-                            <img id="hero-main-img" src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=900&auto=format&fit=crop&q=80" alt="Foto OSIS" class="w-full h-full object-cover">
-                            <div class="absolute bottom-2 left-2 bg-black/80 text-retro-yellow border border-retro-yellow px-2 py-0.5 rounded font-pixel text-[8px]">
-                                LIVE_FEED_2026.RAW
+                        <!-- Hero Banner Photo with Floating Badges -->
+                        <div class="mt-4 sm:mt-5 brutal-card p-2 bg-white border-2 border-[#0F2744] relative group">
+                            <!-- Floating Badge 1 (Top-Right) -->
+                            <div class="absolute -top-3.5 -right-2 bg-amber-400 text-slate-950 border-2 border-[#0F2744] font-sans font-bold text-[10px] px-3 py-1 rounded-full shadow-academic animate-float-1 z-20 select-none">
+                                <span>⚡ KABINET MUDA BERSATU</span>
+                            </div>
+                            <!-- Floating Badge 2 (Bottom-Left) -->
+                            <div class="absolute -bottom-3 -left-2 bg-sky-500 text-white border-2 border-[#0F2744] font-sans font-bold text-[9px] px-2.5 py-0.5 rounded-full shadow-academic animate-float-2 z-20 select-none hidden sm:block">
+                                <span>★ 100% SMKN BATUJAYA</span>
+                            </div>
+
+                            <div class="relative aspect-[16/9] overflow-hidden rounded-xl bg-slate-900 border border-slate-800">
+                                <img id="hero-main-img" src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=900&auto=format&fit=crop&q=80" alt="Foto OSIS" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                <div class="absolute bottom-2 left-2 bg-slate-950/80 text-amber-400 border border-amber-400/50 px-2 py-0.5 rounded-md font-sans text-[9px] font-bold">
+                                    DOKUMENTASI KABINET 2026
+                                </div>
+                            </div>
+                            <div class="pt-2 px-1 flex items-center justify-between text-xs font-sans">
+                                <span id="hero-caption-title" class="font-bold text-slate-900 dark:text-white text-xs">Kabinet Muda Bersatu</span>
+                                <span id="hero-badge-status" class="bg-emerald-100 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-700 px-2 py-0.5 rounded-full font-bold text-[10px]">100% AKTIF</span>
                             </div>
                         </div>
-                        <div class="pt-2 px-1 flex items-center justify-between text-xs font-mono">
-                            <span id="hero-caption-title" class="font-bold text-black text-[11px] sm:text-xs">Kabinet Muda Bersatu</span>
-                            <span id="hero-badge-status" class="bg-retro-lime text-black border border-black px-1.5 py-0.2 rounded font-bold text-[9px] sm:text-[10px]">100% AKTIF</span>
-                        </div>
-                    </div>
 
-                    <!-- Statistics Matrix Row -->
-                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-2.5 mt-4 sm:mt-5 pt-3 sm:pt-4 border-t-2 border-dashed border-zinc-200" id="hero-stats-container">
-                        <!-- Rendered from data/umum.js -->
+                        <!-- Statistics Matrix Row -->
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-2.5 mt-4 sm:mt-5 pt-3 sm:pt-4 border-t border-slate-200 dark:border-slate-800" id="hero-stats-container">
+                            <!-- Rendered from data/umum.js -->
+                        </div>
                     </div>
                 </div>
 
+                <!-- Editorial Section Divider: Timeline -->
+                <div class="edu-section-divider">
+                    <span class="line"></span>
+                    <span class="pill"><i class="fa-solid fa-calendar-check mr-1.5 text-amber-500"></i> AGENDA & REKAM JEJAK TAHUNAN</span>
+                    <span class="line"></span>
+                </div>
 
-                <!-- 2.2 TIMELINE KERJA HUMAS & REKAM JEJAK SETAHUN ("What OSIS Doing On The Year") -->
-                <div id="timeline-setahun" class="brutal-card bg-white p-4 sm:p-7">
-                    <div class="window-bar -mx-4 -mt-4 sm:-mx-7 sm:-mt-7 mb-4 sm:mb-6 bg-zinc-950 text-retro-cyan">
-                        <span>ANNUAL_ROADMAP_2026.LOG</span>
-                        <span>WHAT OSIS DOES</span>
+                <!-- 2.2 TIMELINE KERJA HUMAS & REKAM JEJAK SETAHUN -->
+                <div id="timeline-setahun" class="brutal-card bg-white p-4 sm:p-7 scroll-reveal">
+                    <div class="window-bar -mx-4 -mt-4 sm:-mx-7 sm:-mt-7 mb-4 sm:mb-6">
+                        <span class="flex items-center gap-1.5"><i class="fa-solid fa-timeline text-sky-400"></i> REKAM_JEJAK_AGENDA</span>
+                        <span>AGENDA TAHUNAN</span>
                     </div>
 
                     <div>
-                        <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-retro-cyan border-2 border-black shadow-brutal-sm font-pixel text-[8px] sm:text-[9px] mb-2">
-                            <i class="fa-solid fa-calendar-check"></i>
+                        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sky-50 dark:bg-sky-950/50 border border-sky-300 dark:border-sky-700 text-sky-900 dark:text-sky-200 font-sans text-xs font-bold mb-2">
+                            <i class="fa-solid fa-calendar-check text-sky-600 dark:text-sky-400"></i>
                             <span id="timeline-badge">📅 AGENDA & KILAS BALIK SETAHUN</span>
                         </div>
-                        <h2 id="timeline-title" class="font-display font-black text-xl sm:text-3xl text-black">
+                        <h2 id="timeline-title" class="font-display font-black text-xl sm:text-3xl text-[#0F2744] dark:text-white">
                             Kilas Balik & Agenda OSIS Setahun Penuh
                         </h2>
-                        <p id="timeline-desc" class="font-sans text-xs sm:text-sm text-zinc-600 mt-1">
+                        <p id="timeline-desc" class="font-sans text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-1">
                             Transparansi kegiatan OSIS periode 2026/2027. Lihat pencapaian yang sudah terlaksana dan agenda seru yang akan datang!
                         </p>
                     </div>
@@ -728,41 +1181,48 @@
 
                     <!-- Quarter Filter Tabs -->
                     <div class="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-4 sm:mb-6" id="timeline-filter-container">
-                        <button class="timeline-tab active brutal-btn px-2.5 py-1 sm:px-3 sm:py-1.5 bg-black text-retro-yellow rounded-lg text-xs" data-quarter="all">
+                        <button class="timeline-tab active brutal-btn px-3 py-1.5 bg-[#0F2744] text-amber-400 rounded-lg text-xs" data-quarter="all">
                             ★ Semua (Q1-Q4)
                         </button>
-                        <button class="timeline-tab brutal-btn px-2.5 py-1 sm:px-3 sm:py-1.5 bg-white text-black rounded-lg text-xs" data-quarter="Q1">
+                        <button class="timeline-tab brutal-btn px-3 py-1.5 bg-white text-slate-700 rounded-lg text-xs" data-quarter="Q1">
                             Q1 Jan-Mar
                         </button>
-                        <button class="timeline-tab brutal-btn px-2.5 py-1 sm:px-3 sm:py-1.5 bg-white text-black rounded-lg text-xs" data-quarter="Q2">
+                        <button class="timeline-tab brutal-btn px-3 py-1.5 bg-white text-slate-700 rounded-lg text-xs" data-quarter="Q2">
                             Q2 Apr-Jun
                         </button>
-                        <button class="timeline-tab brutal-btn px-2.5 py-1 sm:px-3 sm:py-1.5 bg-white text-black rounded-lg text-xs" data-quarter="Q3">
+                        <button class="timeline-tab brutal-btn px-3 py-1.5 bg-white text-slate-700 rounded-lg text-xs" data-quarter="Q3">
                             Q3 Jul-Sep
                         </button>
-                        <button class="timeline-tab brutal-btn px-2.5 py-1 sm:px-3 sm:py-1.5 bg-white text-black rounded-lg text-xs" data-quarter="Q4">
+                        <button class="timeline-tab brutal-btn px-3 py-1.5 bg-white text-slate-700 rounded-lg text-xs" data-quarter="Q4">
                             Q4 Okt-Des
                         </button>
                     </div>
 
-                    <!-- Timeline Cards Grid -->
-                    <div class="space-y-3.5 sm:space-y-4" id="timeline-cards-grid">
+                    <!-- Timeline Cards Grid (Road Map Mode) -->
+                    <div class="space-y-3.5 sm:space-y-4 timeline-roadmap-container" id="timeline-cards-grid">
+                        <div class="timeline-roadmap-line"></div>
                         <!-- Rendered from data/timeline.js -->
                     </div>
                 </div>
 
+                <!-- Editorial Section Divider: Program Kerja -->
+                <div class="edu-section-divider">
+                    <span class="line"></span>
+                    <span class="pill"><i class="fa-solid fa-award mr-1.5 text-blue-500"></i> PROGRAM KERJA PRIORITAS SISWA</span>
+                    <span class="line"></span>
+                </div>
 
                 <!-- 2.3 Program Kerja Unggulan (Proker) -->
-                <div id="proker-section" class="brutal-card bg-white p-4 sm:p-7">
-                    <div class="window-bar -mx-4 -mt-4 sm:-mx-7 sm:-mt-7 mb-4 sm:mb-6 bg-zinc-900 text-retro-pink">
-                        <span>PROGRAM_KERJA_UNGGULAN.DAT</span>
-                        <span>[PRIORITAS]</span>
+                <div id="proker-section" class="brutal-card bg-white p-4 sm:p-7 scroll-reveal tilt-card">
+                    <div class="window-bar -mx-4 -mt-4 sm:-mx-7 sm:-mt-7 mb-4 sm:mb-6">
+                        <span class="flex items-center gap-1.5"><i class="fa-solid fa-list-check text-amber-400"></i> PROGRAM_KERJA_UNGGULAN</span>
+                        <span>PRIORITAS</span>
                     </div>
 
                     <div class="mb-4">
-                        <span id="proker-badge" class="brutal-badge bg-retro-pink text-white px-2 py-0.5 rounded text-[8px] sm:text-[9px] font-pixel mb-1">Agenda & Aksi</span>
-                        <h2 id="proker-title" class="font-display font-black text-xl sm:text-2xl text-black">Program Kerja Unggulan</h2>
-                        <p id="proker-desc" class="font-sans text-xs text-zinc-600 mt-1">Daftar agenda prioritas untuk kreativitas, sportivitas, dan solidaritas siswa.</p>
+                        <span id="proker-badge" class="inline-flex items-center gap-1 bg-amber-50 dark:bg-amber-950/50 border border-amber-300 dark:border-amber-700 text-amber-900 dark:text-amber-200 px-2.5 py-0.5 rounded-full text-xs font-bold mb-1">Agenda & Aksi</span>
+                        <h2 id="proker-title" class="font-display font-black text-xl sm:text-2xl text-[#0F2744] dark:text-white">Program Kerja Unggulan</h2>
+                        <p id="proker-desc" class="font-sans text-xs text-slate-600 dark:text-slate-300 mt-1">Daftar agenda prioritas untuk kreativitas, sportivitas, dan solidaritas siswa.</p>
                     </div>
 
                     <div class="space-y-3.5 sm:space-y-4" id="proker-grid">
@@ -770,62 +1230,74 @@
                     </div>
                 </div>
 
+                <!-- Editorial Section Divider: Visi Misi -->
+                <div class="edu-section-divider">
+                    <span class="line"></span>
+                    <span class="pill"><i class="fa-solid fa-landmark mr-1.5 text-emerald-500"></i> FONDASI ORGANISASI & SAMBUTAN</span>
+                    <span class="line"></span>
+                </div>
 
                 <!-- 2.4 Sambutan Ketua, Visi & Misi -->
-                <div id="tentang-section" class="brutal-card bg-white p-4 sm:p-7">
+                <div id="tentang-section" class="brutal-card bg-white p-4 sm:p-7 scroll-reveal tilt-card">
                     <div class="window-bar -mx-4 -mt-4 sm:-mx-7 sm:-mt-7 mb-4 sm:mb-6">
-                        <span>VISI_MISI_ORGANISASI.TXT</span>
+                        <span class="flex items-center gap-1.5"><i class="fa-solid fa-quote-left text-amber-400"></i> VISI_MISI_ORGANISASI</span>
                         <span>FONDASI</span>
                     </div>
 
                     <!-- Sambutan Ketua Box -->
-                    <div class="brutal-card bg-retro-dark text-white p-4 sm:p-5 border-2 border-black mb-4 sm:mb-6">
+                    <div class="brutal-card bg-slate-900 text-white p-4 sm:p-5 border-2 border-slate-800 mb-4 sm:mb-6">
                         <div class="flex items-center gap-3 sm:gap-3.5 mb-3">
-                            <img id="ketua-foto" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&auto=format&fit=crop&q=80" alt="Ketua" class="w-12 h-12 sm:w-14 sm:h-14 rounded-lg object-cover border-2 border-retro-yellow shrink-0">
+                            <img id="ketua-foto" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&auto=format&fit=crop&q=80" alt="Ketua" class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl object-cover border-2 border-amber-400 shrink-0">
                             <div>
-                                <span class="bg-retro-pink text-white font-pixel text-[7px] sm:text-[8px] px-1.5 py-0.2 rounded">KETUA UMUM OSIS</span>
+                                <span class="bg-amber-500 text-slate-950 font-sans font-bold text-[10px] px-2 py-0.5 rounded-full">KETUA UMUM OSIS</span>
                                 <h4 id="ketua-nama" class="font-display font-black text-base sm:text-lg text-white mt-0.5">Arya Bagaskara</h4>
-                                <p id="ketua-jabatan" class="font-mono text-[10px] sm:text-[11px] text-retro-yellow">Periode 2026/2027</p>
+                                <p id="ketua-jabatan" class="font-sans text-[11px] text-amber-400 font-semibold">Periode 2026/2027</p>
                             </div>
                         </div>
-                        <p id="ketua-kutipan" class="font-sans text-xs sm:text-sm text-zinc-200 italic leading-relaxed bg-zinc-900 p-2.5 sm:p-3 rounded border border-zinc-700">
+                        <p id="ketua-kutipan" class="font-sans text-xs sm:text-sm text-slate-300 italic leading-relaxed bg-slate-950 p-3 rounded-xl border border-slate-800">
                             "OSIS bukan sekadar penyelenggara acara, melainkan jembatan aspirasi, ruang bertumbuh bersama, dan wadah aktualisasi potensi setiap siswa."
                         </p>
                     </div>
 
                     <!-- Visi Box -->
-                    <div class="p-3.5 sm:p-4 bg-retro-yellow/30 border-2 border-black rounded-xl mb-3 sm:mb-4">
-                        <div class="flex items-center gap-2 mb-1.5 sm:mb-2 font-display font-black text-sm sm:text-base text-black">
-                            <i class="fa-solid fa-bullseye text-retro-pink"></i>
+                    <div class="p-4 bg-amber-50 dark:bg-amber-950/30 border-2 border-amber-300 dark:border-amber-700/60 rounded-xl mb-3 sm:mb-4">
+                        <div class="flex items-center gap-2 mb-1.5 sm:mb-2 font-display font-black text-sm sm:text-base text-slate-900 dark:text-amber-200">
+                            <i class="fa-solid fa-bullseye text-amber-500"></i>
                             <h3 id="visi-title">Visi Kami</h3>
                         </div>
-                        <p id="visi-text" class="font-sans text-xs sm:text-sm text-zinc-800 font-medium leading-relaxed"></p>
+                        <p id="visi-text" class="font-sans text-xs sm:text-sm text-slate-800 dark:text-slate-200 font-medium leading-relaxed"></p>
                     </div>
 
                     <!-- Misi Box -->
-                    <div class="p-3.5 sm:p-4 bg-white border-2 border-black rounded-xl">
-                        <div class="flex items-center gap-2 mb-2 sm:mb-3 font-display font-black text-sm sm:text-base text-black">
-                            <i class="fa-solid fa-list-check text-retro-cyan"></i>
+                    <div class="p-4 bg-white dark:bg-[#131E3A] border-2 border-slate-200 dark:border-slate-800 rounded-xl">
+                        <div class="flex items-center gap-2 mb-2 sm:mb-3 font-display font-black text-sm sm:text-base text-[#0F2744] dark:text-white">
+                            <i class="fa-solid fa-list-check text-sky-500"></i>
                             <h3 id="misi-title">Misi Utama</h3>
                         </div>
-                        <ul class="space-y-2 font-sans text-xs text-zinc-700 font-medium" id="misi-list">
+                        <ul class="space-y-2.5 font-sans text-xs text-slate-700 dark:text-slate-300 font-medium" id="misi-list">
                             <!-- Rendered from data/tentang.js -->
                         </ul>
                     </div>
                 </div>
 
+                <!-- Editorial Section Divider: Struktur -->
+                <div class="edu-section-divider">
+                    <span class="line"></span>
+                    <span class="pill"><i class="fa-solid fa-users mr-1.5 text-indigo-500"></i> STRUKTUR KEPENGURUSAN KABINET</span>
+                    <span class="line"></span>
+                </div>
 
                 <!-- 2.5 Struktur Pengurus (Trading Cards) -->
-                <div id="struktur-section" class="brutal-card bg-white p-4 sm:p-7">
-                    <div class="window-bar -mx-4 -mt-4 sm:-mx-7 sm:-mt-7 mb-4 sm:mb-6 bg-zinc-900 text-retro-lime">
-                        <span>PENGURUS_KABINET.DB</span>
-                        <span>[STAFF]</span>
+                <div id="struktur-section" class="brutal-card bg-white p-4 sm:p-7 scroll-reveal">
+                    <div class="window-bar -mx-4 -mt-4 sm:-mx-7 sm:-mt-7 mb-4 sm:mb-6">
+                        <span class="flex items-center gap-1.5"><i class="fa-solid fa-users text-amber-400"></i> STRUKTUR_KEPENGURUSAN</span>
+                        <span>STAFF OSIS</span>
                     </div>
 
                     <div class="mb-4">
-                        <span id="pengurus-badge" class="brutal-badge bg-retro-lime text-black px-2 py-0.5 rounded text-[8px] sm:text-[9px] font-pixel mb-1">Struktur</span>
-                        <h2 id="pengurus-title" class="font-display font-black text-xl sm:text-2xl text-black">Kabinet Muda Bersatu</h2>
-                        <p id="pengurus-desc" class="font-sans text-xs text-zinc-600 mt-1">Kenali tim berdedikasi yang memimpin inisiatif program kerja sekolah.</p>
+                        <span id="pengurus-badge" class="inline-flex items-center gap-1 bg-indigo-50 dark:bg-indigo-950/50 border border-indigo-300 dark:border-indigo-700 text-indigo-900 dark:text-indigo-200 px-2.5 py-0.5 rounded-full text-xs font-bold mb-1">Struktur</span>
+                        <h2 id="pengurus-title" class="font-display font-black text-xl sm:text-2xl text-[#0F2744] dark:text-white">Kabinet Muda Bersatu</h2>
+                        <p id="pengurus-desc" class="font-sans text-xs text-slate-600 dark:text-slate-300 mt-1">Kenali tim berdedikasi yang memimpin inisiatif program kerja sekolah.</p>
                         
                         <!-- Filter Pengurus -->
                         <div class="flex flex-wrap items-center gap-1.5 mt-2.5 sm:mt-3" id="pengurus-filter-container">
@@ -838,18 +1310,24 @@
                     </div>
                 </div>
 
+                <!-- Editorial Section Divider: Galeri -->
+                <div class="edu-section-divider">
+                    <span class="line"></span>
+                    <span class="pill"><i class="fa-solid fa-camera mr-1.5 text-amber-500"></i> DOKUMENTASI & ARSIP KEGIATAN</span>
+                    <span class="line"></span>
+                </div>
 
                 <!-- 2.6 Galeri Dokumentasi Kegiatan -->
-                <div id="galeri-section" class="brutal-card bg-retro-yellow/20 p-4 sm:p-7">
+                <div id="galeri-section" class="brutal-card bg-slate-50 dark:bg-slate-900/60 p-4 sm:p-7 scroll-reveal">
                     <div class="window-bar -mx-4 -mt-4 sm:-mx-7 sm:-mt-7 mb-4 sm:mb-6">
-                        <span>GALERI_DOKUMENTASI.IMG</span>
-                        <span>POLAROID</span>
+                        <span class="flex items-center gap-1.5"><i class="fa-solid fa-images text-sky-400"></i> ARSIP_DOKUMENTASI_FOTO</span>
+                        <span>DOKUMENTASI</span>
                     </div>
 
                     <div class="mb-4">
-                        <span id="galeri-badge" class="brutal-badge bg-retro-pink text-white px-2 py-0.5 rounded text-[8px] sm:text-[9px] font-pixel mb-1">Dokumentasi</span>
-                        <h2 id="galeri-title" class="font-display font-black text-xl sm:text-2xl text-black">Galeri Kegiatan Sekolah</h2>
-                        <p id="galeri-desc" class="font-sans text-xs text-zinc-600 mt-1">Momen berharga antusiasme siswa dalam berbagai agenda OSIS.</p>
+                        <span id="galeri-badge" class="inline-flex items-center gap-1 bg-amber-50 dark:bg-amber-950/50 border border-amber-300 dark:border-amber-700 text-amber-900 dark:text-amber-200 px-2.5 py-0.5 rounded-full text-xs font-bold mb-1">Dokumentasi</span>
+                        <h2 id="galeri-title" class="font-display font-black text-xl sm:text-2xl text-[#0F2744] dark:text-white">Galeri Kegiatan Sekolah</h2>
+                        <p id="galeri-desc" class="font-sans text-xs text-slate-600 dark:text-slate-300 mt-1">Momen berharga antusiasme siswa dalam berbagai agenda OSIS.</p>
                     </div>
 
                     <div class="grid grid-cols-2 gap-3 sm:gap-4" id="galeri-grid">
@@ -857,28 +1335,34 @@
                     </div>
                 </div>
 
+                <!-- Editorial Section Divider: Aspirasi -->
+                <div class="edu-section-divider">
+                    <span class="line"></span>
+                    <span class="pill"><i class="fa-solid fa-comment-dots mr-1.5 text-sky-500"></i> FORUM ASPIRASI & LAYANAN SISWA</span>
+                    <span class="line"></span>
+                </div>
 
                 <!-- 2.7 Kotak Aspirasi & Suara Siswa -->
-                <div id="aspirasi-section" class="brutal-card bg-zinc-950 text-white p-4 sm:p-7 border-2 sm:border-3 border-retro-yellow">
-                    <div class="window-bar -mx-4 -mt-4 sm:-mx-7 sm:-mt-7 mb-4 sm:mb-6 bg-zinc-900 text-retro-yellow">
-                        <span>TERMINAL_ASPIRASI.SH</span>
-                        <span class="text-retro-lime">● INPUT AKTIF</span>
+                <div id="aspirasi-section" class="brutal-card bg-slate-900 text-white p-4 sm:p-7 border-2 border-slate-800 scroll-reveal">
+                    <div class="window-bar -mx-4 -mt-4 sm:-mx-7 sm:-mt-7 mb-4 sm:mb-6 bg-slate-950 text-amber-400">
+                        <span class="flex items-center gap-1.5"><i class="fa-solid fa-paper-plane text-amber-400"></i> FORUM_ASPIRASI_ONLINE</span>
+                        <span class="text-emerald-400 font-bold text-[9px]">● FORM AKTIF</span>
                     </div>
 
                     <div class="text-center max-w-md mx-auto mb-4 sm:mb-6">
-                        <span id="aspirasi-badge" class="brutal-badge bg-retro-cyan text-black px-2 py-0.5 rounded text-[8px] sm:text-[9px] font-pixel mb-1">Suara Anda Berarti</span>
+                        <span id="aspirasi-badge" class="inline-flex items-center gap-1 bg-sky-500/20 text-sky-300 border border-sky-400/40 px-3 py-1 rounded-full text-xs font-bold mb-1">Suara Anda Berarti</span>
                         <h2 id="aspirasi-title" class="font-display font-black text-lg sm:text-2xl text-white mt-1">Kotak Aspirasi & Suara Siswa</h2>
-                        <p id="aspirasi-desc" class="font-sans text-xs text-zinc-300 mt-1">Punya ide, kritik sarana, atau usulan event? Sampaikan langsung ke pengurus!</p>
+                        <p id="aspirasi-desc" class="font-sans text-xs text-slate-300 mt-1">Punya ide, kritik sarana, atau usulan event? Sampaikan langsung ke pengurus!</p>
                     </div>
 
                     <form id="aspirasi-form" class="space-y-3 max-w-md mx-auto">
                         <div>
-                            <label class="block font-mono text-xs text-zinc-300 mb-1">Nama (Boleh Anonim)</label>
-                            <input type="text" id="aspirasi-nama" placeholder="Contoh: Siswa Kelas XI" class="w-full px-3 py-2 rounded-lg bg-zinc-800 border-2 border-zinc-600 text-white placeholder-zinc-500 text-xs focus:border-retro-yellow focus:outline-none">
+                            <label class="block font-sans text-xs font-semibold text-slate-300 mb-1">Nama (Boleh Anonim)</label>
+                            <input type="text" id="aspirasi-nama" placeholder="Contoh: Siswa Kelas XI" class="w-full px-3 py-2 rounded-xl bg-slate-800 border-2 border-slate-700 text-white placeholder-slate-500 text-xs focus:border-amber-400 focus:outline-none">
                         </div>
                         <div>
-                            <label class="block font-mono text-xs text-zinc-300 mb-1">Kategori Aspirasi</label>
-                            <select id="aspirasi-kategori" class="w-full px-3 py-2 rounded-lg bg-zinc-800 border-2 border-zinc-600 text-white text-xs focus:border-retro-yellow focus:outline-none">
+                            <label class="block font-sans text-xs font-semibold text-slate-300 mb-1">Kategori Aspirasi</label>
+                            <select id="aspirasi-kategori" class="w-full px-3 py-2 rounded-xl bg-slate-800 border-2 border-slate-700 text-white text-xs focus:border-amber-400 focus:outline-none">
                                 <option value="Fasilitas Sekolah">Fasilitas & Sarana Sekolah</option>
                                 <option value="Kegiatan / Event">Event OSIS & Classmeeting</option>
                                 <option value="Sponsorship & Donasi">Pertanyaan Donasi & Sponsor</option>
@@ -887,16 +1371,16 @@
                             </select>
                         </div>
                         <div>
-                            <label class="block font-mono text-xs text-zinc-300 mb-1">Pesan Aspirasi</label>
-                            <textarea id="aspirasi-pesan" rows="3" required placeholder="Tuliskan saran atau idemu secara jelas..." class="w-full px-3 py-2 rounded-lg bg-zinc-800 border-2 border-zinc-600 text-white placeholder-zinc-500 text-xs focus:border-retro-yellow focus:outline-none"></textarea>
+                            <label class="block font-sans text-xs font-semibold text-slate-300 mb-1">Pesan Aspirasi</label>
+                            <textarea id="aspirasi-pesan" rows="3" required placeholder="Tuliskan saran atau idemu secara jelas..." class="w-full px-3 py-2 rounded-xl bg-slate-800 border-2 border-slate-700 text-white placeholder-slate-500 text-xs focus:border-amber-400 focus:outline-none"></textarea>
                         </div>
-                        <button type="submit" class="w-full brutal-btn py-2.5 bg-retro-yellow text-black rounded-lg text-xs font-bold flex items-center justify-center gap-2">
+                        <button type="submit" class="w-full brutal-btn py-2.5 bg-amber-500 hover:bg-amber-400 text-slate-950 rounded-xl text-xs font-bold flex items-center justify-center gap-2 shadow-academic">
                             <i class="fa-solid fa-paper-plane"></i>
                             <span id="aspirasi-btn-text">Kirim Aspirasi Sekarang</span>
                         </button>
                     </form>
 
-                    <div id="aspirasi-alert" class="hidden mt-4 p-3 rounded-lg bg-retro-lime/20 border border-retro-lime text-retro-lime font-mono text-xs text-center">
+                    <div id="aspirasi-alert" class="hidden mt-4 p-3 rounded-xl bg-emerald-500/20 border border-emerald-400 text-emerald-300 font-sans text-xs text-center font-semibold">
                         <i class="fa-solid fa-circle-check mr-1"></i> <span id="aspirasi-alert-text">Aspirasi berhasil dikirim ke pengurus!</span>
                     </div>
                 </div>
@@ -911,62 +1395,62 @@
             <aside class="col-section-3 col-span-1 lg:col-span-3 space-y-6 lg:sticky lg:top-14" id="kolom-donasi">
 
                 <!-- 3.1 KOTAK DONASI & KEMITRAAN (1 MENU TUNGGAL!) -->
-                <div class="brutal-card bg-retro-yellow/30 p-4 sm:p-5 border-2.5 sm:border-3 border-black shadow-brutal-lg">
-                    <div class="window-bar -mx-4 -mt-4 sm:-mx-5 sm:-mt-5 mb-3 sm:mb-4 bg-black text-retro-yellow">
+                <div class="brutal-card bg-amber-50/60 dark:bg-[#111D38] p-4 sm:p-5 border-2.5 border-[#0F2744] dark:border-amber-400 shadow-academic">
+                    <div class="window-bar -mx-4 -mt-4 sm:-mx-5 sm:-mt-5 mb-3 sm:mb-4 bg-[#0F2744] text-amber-400">
                         <span class="flex items-center gap-1.5">
-                            <i class="fa-solid fa-qrcode text-retro-yellow"></i>
-                            <span>DONASI_QRIS_EWALLET.EXE</span>
+                            <i class="fa-solid fa-hand-holding-dollar text-amber-400"></i>
+                            <span>KOTAK_DONASI_KEMITRAAN</span>
                         </span>
-                        <span class="text-retro-lime font-pixel text-[8px]">1 MENU</span>
+                        <span class="text-emerald-400 font-sans font-bold text-[9px]">1 MENU RESMI</span>
                     </div>
 
                     <div class="text-center mb-3">
-                        <span class="brutal-badge bg-retro-pink text-white text-[8px] font-pixel px-2 py-0.5 rounded">
-                            ⚡ 1 MENU: QRIS & E-WALLET
+                        <span class="inline-flex items-center gap-1 bg-amber-100 text-amber-900 dark:bg-amber-950/60 dark:text-amber-300 border border-amber-300 dark:border-amber-700 text-[10px] font-sans font-bold px-2.5 py-0.5 rounded-full">
+                            <i class="fa-solid fa-qrcode text-[9px]"></i> 1 MENU: QRIS & E-WALLET
                         </span>
-                        <h3 class="font-display font-black text-base sm:text-lg text-black mt-1.5">Kotak Donasi & Kemitraan</h3>
-                        <p class="font-sans text-[11px] text-zinc-700 leading-tight mt-1">
-                            Scan QRIS atau transfer via DANA, GoPay, OVO & m-Banking dalam satu menu praktis!
+                        <h3 class="font-display font-black text-base sm:text-lg text-[#0F2744] dark:text-white mt-1.5">Kotak Donasi & Kemitraan</h3>
+                        <p class="font-sans text-[11px] text-slate-600 dark:text-slate-300 leading-normal mt-1">
+                            Scan QRIS atau transfer via DANA, GoPay, OVO & m-Banking dalam satu menu praktis terpadu!
                         </p>
                     </div>
 
                     <!-- Target Progress Bar -->
-                    <div class="bg-white border-2 border-black rounded-lg p-2.5 sm:p-3 mb-3">
-                        <div class="flex items-center justify-between text-xs font-mono">
-                            <span class="text-zinc-500 font-bold">TERKUMPUL:</span>
-                            <span id="donasi-persen-badge" class="bg-retro-lime text-black px-1.5 py-0.2 rounded font-pixel text-[8px] font-bold">75%</span>
+                    <div class="bg-white dark:bg-[#0E172E] border-2 border-[#0F2744] dark:border-slate-700 rounded-xl p-3 mb-3 shadow-sm">
+                        <div class="flex items-center justify-between text-xs font-sans font-semibold">
+                            <span class="text-slate-500 dark:text-slate-400">TERKUMPUL:</span>
+                            <span id="donasi-persen-badge" class="bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-700 px-2 py-0.5 rounded-full font-bold text-[10px]">75%</span>
                         </div>
-                        <div class="flex items-baseline justify-between mt-1">
-                            <span id="donasi-terkumpul-val" class="font-display font-black text-base sm:text-lg text-retro-pink">Rp 18.750.000</span>
-                            <span class="font-mono text-[10px] text-zinc-500">Target <span id="donasi-target-val" class="font-bold text-black">25jt</span></span>
+                        <div class="flex items-baseline justify-between mt-1.5">
+                            <span id="donasi-terkumpul-val" class="font-display font-black text-lg text-amber-600 dark:text-amber-400">Rp 18.750.000</span>
+                            <span class="font-sans text-[11px] text-slate-500">Target <span id="donasi-target-val" class="font-bold text-slate-900 dark:text-white">25jt</span></span>
                         </div>
-                        <div class="w-full bg-zinc-200 border border-black h-2.5 rounded mt-1.5 overflow-hidden">
-                            <div id="donasi-progress-fill" class="bg-gradient-to-r from-retro-yellow to-retro-pink h-full" style="width: 75%;"></div>
+                        <div class="w-full bg-slate-200 dark:bg-slate-800 h-2.5 rounded-full mt-2 overflow-hidden">
+                            <div id="donasi-progress-fill" class="bg-gradient-to-r from-emerald-500 via-teal-500 to-amber-500 h-full rounded-full" style="width: 75%;"></div>
                         </div>
-                        <span class="block text-[10px] font-mono text-zinc-500 mt-1.5 text-center">
-                            Dari <strong id="donasi-total-donatur">142</strong> Donatur & Mitra Sekolah
+                        <span class="block text-[11px] font-sans text-slate-500 dark:text-slate-400 mt-2 text-center">
+                            Didukung <strong id="donasi-total-donatur" class="text-slate-900 dark:text-white">142</strong> Donatur & Mitra Siswa
                         </span>
                     </div>
 
                     <!-- 1 MENU TAB SWITCHER: QRIS vs E-WALLET/TRANSFER -->
-                    <div class="flex items-center gap-1.5 mb-3 bg-zinc-200 p-1 border-2 border-black rounded-lg">
-                        <button id="tab-btn-qris" class="w-1/2 py-1.5 px-2 bg-retro-yellow text-black font-display font-black text-xs rounded border border-black shadow-brutal-sm flex items-center justify-center gap-1 transition-all">
-                            <i class="fa-solid fa-qrcode"></i>
+                    <div class="flex items-center gap-1.5 mb-3 bg-slate-100 dark:bg-slate-800/80 p-1 border-2 border-[#0F2744] dark:border-slate-700 rounded-xl">
+                        <button id="tab-btn-qris" class="w-1/2 py-2 px-2 bg-[#0F2744] text-amber-400 font-display font-black text-xs rounded-lg shadow-sm flex items-center justify-center gap-1.5 transition-all">
+                            <i class="fa-solid fa-qrcode text-xs"></i>
                             <span>Scan QRIS</span>
                         </button>
-                        <button id="tab-btn-ewallet" class="w-1/2 py-1.5 px-2 bg-white text-zinc-700 font-display font-bold text-xs rounded border border-transparent hover:border-black flex items-center justify-center gap-1 transition-all">
-                            <i class="fa-solid fa-wallet"></i>
+                        <button id="tab-btn-ewallet" class="w-1/2 py-2 px-2 bg-transparent text-slate-600 dark:text-slate-300 font-display font-bold text-xs rounded-lg hover:bg-white/80 dark:hover:bg-slate-700 flex items-center justify-center gap-1.5 transition-all">
+                            <i class="fa-solid fa-wallet text-xs"></i>
                             <span>E-Wallet / Bank</span>
                         </button>
                     </div>
 
                     <!-- TAB 1: QRIS SCANNER VIEW -->
-                    <div id="view-qris-container" class="bg-white border-2 border-black rounded-lg p-3 text-center">
-                        <span class="font-pixel text-[8px] font-bold text-black block mb-1">SCAN QRIS ALL PAYMENT</span>
-                        <div class="w-32 h-32 sm:w-36 sm:h-36 mx-auto bg-white border-2 border-black p-1.5 rounded-lg flex items-center justify-center shadow-brutal-sm">
+                    <div id="view-qris-container" class="bg-white dark:bg-[#0E172E] border-2 border-[#0F2744] dark:border-slate-700 rounded-xl p-3 text-center">
+                        <span class="font-sans text-[10px] font-bold text-slate-700 dark:text-slate-300 block mb-1 uppercase tracking-wider">SCAN QRIS ALL PAYMENT</span>
+                        <div class="w-32 h-32 sm:w-36 sm:h-36 mx-auto bg-white border-2 border-[#0F2744] dark:border-slate-700 p-2 rounded-xl flex items-center justify-center shadow-sm">
                             <img id="col3-qris-img" src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=DONASI-OSIS-SMKN-BATUJAYA-2026" alt="QRIS Code" class="w-full h-full object-contain">
                         </div>
-                        <p class="font-mono text-[9px] text-zinc-600 mt-2 leading-tight">
+                        <p class="font-sans text-[10px] text-slate-500 dark:text-slate-400 mt-2.5 leading-snug">
                             Bisa scan dari GoPay, OVO, DANA, ShopeePay, BCA Mobile & semua m-Banking!
                         </p>
                     </div>
@@ -974,81 +1458,81 @@
                     <!-- TAB 2: E-WALLET & BANK TRANSFER VIEW -->
                     <div id="view-ewallet-container" class="hidden space-y-2">
                         <!-- DANA / GoPay -->
-                        <div class="p-2 bg-white border-2 border-black rounded-lg flex items-center justify-between">
+                        <div class="p-2.5 bg-white dark:bg-[#0E172E] border-2 border-[#0F2744] dark:border-slate-700 rounded-xl flex items-center justify-between">
                             <div>
-                                <span class="font-display font-black text-[11px] block text-retro-pink">DANA / GOPAY</span>
-                                <span class="font-mono text-xs font-bold text-black">0812-3456-7890</span>
-                                <span class="block text-[8px] font-mono text-zinc-500">a.n Bendahara OSIS</span>
+                                <span class="font-display font-black text-[11px] block text-sky-600 dark:text-sky-400">DANA / GOPAY</span>
+                                <span class="font-mono text-xs font-bold text-slate-900 dark:text-white">0812-3456-7890</span>
+                                <span class="block text-[9px] font-sans text-slate-500">a.n Bendahara OSIS</span>
                             </div>
-                            <button class="copy-rek-btn brutal-btn px-2 py-1 bg-white text-black text-[10px] rounded" data-copy="081234567890">
+                            <button class="copy-rek-btn brutal-btn px-2.5 py-1 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-white text-[10px] rounded-lg" data-copy="081234567890">
                                 Salin
                             </button>
                         </div>
 
                         <!-- OVO / ShopeePay -->
-                        <div class="p-2 bg-white border-2 border-black rounded-lg flex items-center justify-between">
+                        <div class="p-2.5 bg-white dark:bg-[#0E172E] border-2 border-[#0F2744] dark:border-slate-700 rounded-xl flex items-center justify-between">
                             <div>
-                                <span class="font-display font-black text-[11px] block text-purple-700">OVO / SHOPEEPAY</span>
-                                <span class="font-mono text-xs font-bold text-black">0812-3456-7890</span>
-                                <span class="block text-[8px] font-mono text-zinc-500">a.n Bendahara OSIS</span>
+                                <span class="font-display font-black text-[11px] block text-purple-600 dark:text-purple-400">OVO / SHOPEEPAY</span>
+                                <span class="font-mono text-xs font-bold text-slate-900 dark:text-white">0812-3456-7890</span>
+                                <span class="block text-[9px] font-sans text-slate-500">a.n Bendahara OSIS</span>
                             </div>
-                            <button class="copy-rek-btn brutal-btn px-2 py-1 bg-white text-black text-[10px] rounded" data-copy="081234567890">
+                            <button class="copy-rek-btn brutal-btn px-2.5 py-1 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-white text-[10px] rounded-lg" data-copy="081234567890">
                                 Salin
                             </button>
                         </div>
 
                         <!-- Bank BCA -->
-                        <div class="p-2 bg-white border-2 border-black rounded-lg flex items-center justify-between">
+                        <div class="p-2.5 bg-white dark:bg-[#0E172E] border-2 border-[#0F2744] dark:border-slate-700 rounded-xl flex items-center justify-between">
                             <div>
-                                <span class="font-display font-black text-[11px] block text-blue-700">BANK BCA</span>
-                                <span class="font-mono text-xs font-bold text-black">827-092-1144</span>
-                                <span class="block text-[8px] font-mono text-zinc-500">a.n Citra Aurelia</span>
+                                <span class="font-display font-black text-[11px] block text-blue-600 dark:text-blue-400">BANK BCA</span>
+                                <span class="font-mono text-xs font-bold text-slate-900 dark:text-white">827-092-1144</span>
+                                <span class="block text-[9px] font-sans text-slate-500">a.n Citra Aurelia</span>
                             </div>
-                            <button class="copy-rek-btn brutal-btn px-2 py-1 bg-white text-black text-[10px] rounded" data-copy="8270921144">
+                            <button class="copy-rek-btn brutal-btn px-2.5 py-1 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-white text-[10px] rounded-lg" data-copy="8270921144">
                                 Salin
                             </button>
                         </div>
 
                         <!-- Bank Mandiri -->
-                        <div class="p-2 bg-white border-2 border-black rounded-lg flex items-center justify-between">
+                        <div class="p-2.5 bg-white dark:bg-[#0E172E] border-2 border-[#0F2744] dark:border-slate-700 rounded-xl flex items-center justify-between">
                             <div>
-                                <span class="font-display font-black text-[11px] block text-amber-700">BANK MANDIRI</span>
-                                <span class="font-mono text-xs font-bold text-black">132-00-9876543-1</span>
-                                <span class="block text-[8px] font-mono text-zinc-500">a.n OSIS SMKN Batujaya</span>
+                                <span class="font-display font-black text-[11px] block text-amber-600 dark:text-amber-400">BANK MANDIRI</span>
+                                <span class="font-mono text-xs font-bold text-slate-900 dark:text-white">132-00-9876543-1</span>
+                                <span class="block text-[9px] font-sans text-slate-500">a.n OSIS SMKN Batujaya</span>
                             </div>
-                            <button class="copy-rek-btn brutal-btn px-2 py-1 bg-white text-black text-[10px] rounded" data-copy="1320098765431">
+                            <button class="copy-rek-btn brutal-btn px-2.5 py-1 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-white text-[10px] rounded-lg" data-copy="1320098765431">
                                 Salin
                             </button>
                         </div>
                     </div>
 
                     <!-- Shortcut Pilihan Nominal -->
-                    <div class="mt-3 pt-2 border-t border-dashed border-zinc-400">
-                        <span class="font-mono text-[9px] font-bold text-black uppercase block mb-1">PILIHAN NOMINAL CEPAT:</span>
-                        <div class="grid grid-cols-4 gap-1">
-                            <button class="quick-amt-btn brutal-btn py-1 text-[10px] bg-white rounded" data-amt="10000">10rb</button>
-                            <button class="quick-amt-btn brutal-btn py-1 text-[10px] bg-white rounded" data-amt="25000">25rb</button>
-                            <button class="quick-amt-btn brutal-btn py-1 text-[10px] bg-retro-yellow rounded font-bold" data-amt="50000">50rb</button>
-                            <button class="quick-amt-btn brutal-btn py-1 text-[10px] bg-white rounded" data-amt="100000">100rb</button>
+                    <div class="mt-3 pt-2.5 border-t border-dashed border-slate-300 dark:border-slate-700">
+                        <span class="font-sans text-[10px] font-bold text-slate-700 dark:text-slate-300 uppercase block mb-1.5">PILIHAN NOMINAL CEPAT:</span>
+                        <div class="grid grid-cols-4 gap-1.5">
+                            <button class="quick-amt-btn brutal-btn py-1 text-[11px] bg-white text-slate-800 rounded-lg" data-amt="10000">10rb</button>
+                            <button class="quick-amt-btn brutal-btn py-1 text-[11px] bg-white text-slate-800 rounded-lg" data-amt="25000">25rb</button>
+                            <button class="quick-amt-btn brutal-btn py-1 text-[11px] bg-amber-400 text-slate-950 rounded-lg font-bold" data-amt="50000">50rb</button>
+                            <button class="quick-amt-btn brutal-btn py-1 text-[11px] bg-white text-slate-800 rounded-lg" data-amt="100000">100rb</button>
                         </div>
                     </div>
 
                     <!-- Action: Konfirmasi WA & Rayakan -->
                     <div class="space-y-2 mt-3 pt-2">
-                        <button id="btn-celebrate-donation" class="w-full brutal-btn py-2.5 bg-retro-lime text-black rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 shadow-brutal active:translate-x-0.5 active:translate-y-0.5">
+                        <button id="btn-celebrate-donation" class="w-full brutal-btn py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 shadow-academic active:translate-x-0.5 active:translate-y-0.5">
                             <i class="fa-solid fa-wand-magic-sparkles"></i>
                             <span>Sudah Donasi? Klik Rayakan! 🎉</span>
                         </button>
                         
-                        <a id="col3-wa-btn" href="https://wa.me/6281234567890?text=Halo%20Humas%20OSIS,%20saya%20sudah%20melakukan%20donasi/transfer%20untuk%20program%20OSIS." target="_blank" class="w-full brutal-btn py-2 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl text-[11px] font-bold flex items-center justify-center gap-1.5">
+                        <a id="col3-wa-btn" href="https://wa.me/6281234567890?text=Halo%20Humas%20OSIS,%20saya%20sudah%20melakukan%20donasi/transfer%20untuk%20program%20OSIS." target="_blank" class="w-full brutal-btn py-2.5 bg-slate-800 hover:bg-slate-700 text-emerald-400 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 border border-slate-700">
                             <i class="fa-brands fa-whatsapp text-sm"></i>
                             <span>Kirim Bukti Transfer ke WA Humas</span>
                         </a>
                     </div>
 
                     <!-- Live Donatur Ticker -->
-                    <div class="mt-3 pt-2 border-t-2 border-dashed border-zinc-400 text-[10px] font-mono text-zinc-600 overflow-hidden">
-                        <span class="font-bold text-black block mb-0.5">★ DONATUR TERBARU:</span>
+                    <div class="mt-3 pt-2.5 border-t border-dashed border-slate-300 dark:border-slate-700 text-[10px] font-sans text-slate-600 dark:text-slate-400 overflow-hidden">
+                        <span class="font-bold text-slate-800 dark:text-slate-200 block mb-0.5">★ DONATUR TERBARU:</span>
                         <marquee scrollamount="4">
                             Budi P. (Alumni) donasi Rp 100.000 via QRIS ★ Siswa Kelas XI donasi Rp 25.000 via DANA ★ CV Bintang Graha Sponsor Rp 2.5jt via Mandiri ★ Siswa Kelas X Rp 50.000 via GoPay ★
                         </marquee>
@@ -1057,78 +1541,78 @@
 
 
                 <!-- 3.2 CATCHY FEATURE: RETRO CASSETTE BOOMBOX (ORIGINAL AUDIO EDITION) -->
-                <div class="brutal-card bg-zinc-950 text-white p-4 border-2.5 sm:border-3 border-black">
-                    <div class="window-bar -mx-4 -mt-4 mb-3 bg-zinc-900 text-retro-lime">
+                <div class="brutal-card bg-slate-900 text-white p-4 border-2 border-slate-800">
+                    <div class="window-bar -mx-4 -mt-4 mb-3 bg-slate-950 text-amber-400">
                         <span class="flex items-center gap-1.5">
-                            <i class="fa-solid fa-compact-disc text-retro-yellow"></i>
-                            <span>BOOMBOX_ORIGINAL.MP3</span>
+                            <i class="fa-solid fa-compact-disc text-amber-400"></i>
+                            <span>STUDIO_AUDIO_PORTAL</span>
                         </span>
-                        <span class="text-retro-yellow font-pixel text-[8px]">MASTER</span>
+                        <span class="text-emerald-400 font-sans text-[9px] font-bold">HD MASTER</span>
                     </div>
 
                     <!-- Mini Cassette Graphic -->
-                    <div id="cassette-deck-visual" class="bg-zinc-800 border-2 border-retro-yellow rounded-lg p-2.5 mb-3">
-                        <div class="bg-retro-paper text-black px-2 py-0.5 rounded text-[8px] font-pixel flex items-center justify-between mb-2">
-                            <span class="text-retro-pink">SIDE A // A7X & HALSTAGE</span>
-                            <span id="cassette-state-text" class="text-zinc-600">READY</span>
+                    <div id="cassette-deck-visual" class="bg-slate-800 border-2 border-amber-400 rounded-xl p-2.5 mb-3">
+                        <div class="bg-slate-100 text-slate-900 px-2 py-0.5 rounded text-[9px] font-sans font-bold flex items-center justify-between mb-2">
+                            <span class="text-amber-700">SIDE A // MASTER SOUNDTRACK</span>
+                            <span id="cassette-state-text" class="text-slate-500">READY</span>
                         </div>
 
                         <!-- Reels -->
-                        <div class="bg-zinc-900 border border-zinc-700 rounded p-1.5 flex items-center justify-around">
-                            <div id="cassette-reel-left" class="w-7 h-7 rounded-full border-2 border-retro-yellow bg-zinc-800 flex items-center justify-center spin-reel spin-reel-paused">
+                        <div class="bg-slate-950 border border-slate-700 rounded-lg p-1.5 flex items-center justify-around">
+                            <div id="cassette-reel-left" class="w-7 h-7 rounded-full border-2 border-amber-400 bg-slate-800 flex items-center justify-center spin-reel spin-reel-paused">
                                 <div class="w-2 h-2 rounded-full bg-white"></div>
                             </div>
-                            <div class="w-10 h-4 bg-amber-950/70 border border-amber-900 rounded flex items-center justify-center font-mono text-[7px] text-amber-300 font-bold">
+                            <div class="w-12 h-4 bg-amber-950/80 border border-amber-800 rounded flex items-center justify-center font-sans text-[8px] text-amber-300 font-bold">
                                 ORIGINAL
                             </div>
-                            <div id="cassette-reel-right" class="w-7 h-7 rounded-full border-2 border-retro-yellow bg-zinc-800 flex items-center justify-center spin-reel spin-reel-paused">
+                            <div id="cassette-reel-right" class="w-7 h-7 rounded-full border-2 border-amber-400 bg-slate-800 flex items-center justify-center spin-reel spin-reel-paused">
                                 <div class="w-2 h-2 rounded-full bg-white"></div>
                             </div>
                         </div>
                     </div>
 
                     <div class="mb-3">
-                        <div class="flex items-center justify-between text-[9px] font-mono mb-0.5">
-                            <span class="text-retro-cyan font-bold" id="current-track-badge">LAGU ASLI #01</span>
-                            <span class="text-zinc-400 font-pixel text-[7px]">HD STEREO</span>
+                        <div class="flex items-center justify-between text-[10px] font-sans mb-0.5">
+                            <span class="text-amber-400 font-bold" id="current-track-badge">LAGU ASLI #01</span>
+                            <span class="text-slate-400 font-mono text-[9px]">HD STEREO</span>
                         </div>
                         <h4 id="current-track-name" class="font-display font-black text-sm text-white leading-tight">Avenged Sevenfold - Dear God</h4>
                         <div class="flex items-end gap-1 h-4 mt-2" id="eq-visualizer">
-                            <div class="eq-bar w-1.5 bg-retro-pink rounded-t" style="height: 4px;"></div>
-                            <div class="eq-bar w-1.5 bg-retro-yellow rounded-t" style="height: 10px;"></div>
-                            <div class="eq-bar w-1.5 bg-retro-lime rounded-t" style="height: 6px;"></div>
-                            <div class="eq-bar w-1.5 bg-retro-cyan rounded-t" style="height: 14px;"></div>
-                            <div class="eq-bar w-1.5 bg-retro-pink rounded-t" style="height: 8px;"></div>
-                            <div class="eq-bar w-1.5 bg-retro-yellow rounded-t" style="height: 12px;"></div>
-                            <div class="eq-bar w-1.5 bg-retro-lime rounded-t" style="height: 5px;"></div>
+                            <div class="eq-bar w-1.5 bg-amber-500 rounded-t" style="height: 4px;"></div>
+                            <div class="eq-bar w-1.5 bg-sky-500 rounded-t" style="height: 10px;"></div>
+                            <div class="eq-bar w-1.5 bg-emerald-500 rounded-t" style="height: 6px;"></div>
+                            <div class="eq-bar w-1.5 bg-amber-400 rounded-t" style="height: 14px;"></div>
+                            <div class="eq-bar w-1.5 bg-sky-400 rounded-t" style="height: 8px;"></div>
+                            <div class="eq-bar w-1.5 bg-emerald-400 rounded-t" style="height: 12px;"></div>
+                            <div class="eq-bar w-1.5 bg-amber-300 rounded-t" style="height: 5px;"></div>
                         </div>
                     </div>
 
                     <!-- Quick Track Switcher Pills -->
-                    <div class="grid grid-cols-3 gap-1 mb-3 text-[9px] font-mono">
-                        <button class="boombox-track-btn brutal-btn py-1 px-1 bg-retro-yellow text-black rounded font-bold truncate text-[9px]" data-track-index="0" title="A7X - Dear God">
+                    <div class="grid grid-cols-3 gap-1 mb-3 text-[10px] font-sans">
+                        <button class="boombox-track-btn brutal-btn py-1 px-1 bg-amber-400 text-slate-950 rounded-lg font-bold truncate text-[10px]" data-track-index="0" title="A7X - Dear God">
                             🎸 Dear God
                         </button>
-                        <button class="boombox-track-btn brutal-btn py-1 px-1 bg-zinc-800 text-zinc-300 hover:text-white rounded truncate text-[9px]" data-track-index="1" title="A7X - Afterlife">
+                        <button class="boombox-track-btn brutal-btn py-1 px-1 bg-slate-800 text-slate-300 hover:text-white rounded-lg truncate text-[10px]" data-track-index="1" title="A7X - Afterlife">
                             ⚡ Afterlife
                         </button>
-                        <button class="boombox-track-btn brutal-btn py-1 px-1 bg-zinc-800 text-zinc-300 hover:text-white rounded truncate text-[9px]" data-track-index="2" title="Halstage - L">
+                        <button class="boombox-track-btn brutal-btn py-1 px-1 bg-slate-800 text-slate-300 hover:text-white rounded-lg truncate text-[10px]" data-track-index="2" title="Halstage - L">
                             🍃 Halstage - L
                         </button>
                     </div>
 
                     <div class="flex items-center gap-2">
-                        <button id="cassette-prev-btn" class="brutal-btn p-2 bg-zinc-800 text-white rounded-lg text-xs" title="Lagu Sebelumnya">
+                        <button id="cassette-prev-btn" class="brutal-btn p-2 bg-slate-800 hover:bg-slate-700 text-white rounded-xl text-xs" title="Lagu Sebelumnya">
                             <i class="fa-solid fa-backward-step"></i>
                         </button>
-                        <button id="cassette-play-btn" class="w-full brutal-btn py-2 bg-retro-lime text-black rounded-lg text-xs font-pixel flex items-center justify-center gap-1.5">
+                        <button id="cassette-play-btn" class="w-full brutal-btn py-2 bg-amber-500 hover:bg-amber-400 text-slate-950 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5">
                             <i class="fa-solid fa-play" id="play-icon"></i>
                             <span id="play-text">PLAY</span>
                         </button>
-                        <button id="cassette-next-btn" class="brutal-btn p-2 bg-zinc-800 text-white rounded-lg text-xs" title="Lagu Berikutnya">
+                        <button id="cassette-next-btn" class="brutal-btn p-2 bg-slate-800 hover:bg-slate-700 text-white rounded-xl text-xs" title="Lagu Berikutnya">
                             <i class="fa-solid fa-forward-step"></i>
                         </button>
-                        <button id="cassette-stop-btn" class="brutal-btn p-2 bg-retro-pink text-white rounded-lg text-xs" title="Stop">
+                        <button id="cassette-stop-btn" class="brutal-btn p-2 bg-slate-800 hover:bg-red-600 text-white rounded-xl text-xs" title="Stop">
                             <i class="fa-solid fa-stop"></i>
                         </button>
                     </div>
@@ -1139,28 +1623,28 @@
 
 
                 <!-- 3.3 CATCHY FEATURE: PAPAN STIKER INTERAKTIF -->
-                <div class="brutal-card bg-amber-50 p-4 border-amber-900/40" id="papan-stiker">
-                    <div class="window-bar -mx-4 -mt-4 mb-3 bg-amber-950 text-retro-yellow">
-                        <span>PAPAN_STIKER.STK</span>
-                        <span>[KLIK]</span>
+                <div class="brutal-card bg-amber-50/60 dark:bg-[#111D38] p-4 border-2 border-slate-200 dark:border-slate-800" id="papan-stiker">
+                    <div class="window-bar -mx-4 -mt-4 mb-3 bg-slate-900 text-amber-400">
+                        <span class="flex items-center gap-1.5"><i class="fa-solid fa-note-sticky text-amber-400"></i> PAPAN_PESAN_SISWA</span>
+                        <span class="text-slate-400 text-[9px]">[INTERAKTIF]</span>
                     </div>
 
                     <div class="flex items-center justify-between mb-2">
-                        <span class="font-mono text-[10px] font-bold text-zinc-600">PILIH STIKER:</span>
-                        <button id="clear-stickers-btn" class="text-[10px] font-mono text-retro-pink underline">Reset</button>
+                        <span class="font-sans text-[10px] font-bold text-slate-600 dark:text-slate-300">PILIH STIKER MOTIVASI:</span>
+                        <button id="clear-stickers-btn" class="text-[10px] font-sans text-amber-600 dark:text-amber-400 font-bold underline">Reset</button>
                     </div>
 
                     <div class="flex flex-wrap gap-1.5 mb-2.5">
-                        <button class="sticker-choice-btn brutal-badge px-2 py-0.5 rounded bg-retro-yellow text-black text-[9px] cursor-pointer ring-2 ring-black" data-sticker="⚡ GOKIL!">⚡ GOKIL!</button>
-                        <button class="sticker-choice-btn brutal-badge px-2 py-0.5 rounded bg-retro-pink text-white text-[9px] cursor-pointer" data-sticker="❤️ SMANSA">❤️ SMANSA</button>
-                        <button class="sticker-choice-btn brutal-badge px-2 py-0.5 rounded bg-retro-cyan text-black text-[9px] cursor-pointer" data-sticker="👾 RETRO">👾 RETRO</button>
-                        <button class="sticker-choice-btn brutal-badge px-2 py-0.5 rounded bg-retro-lime text-black text-[9px] cursor-pointer" data-sticker="💯 SOLID">💯 SOLID</button>
+                        <button class="sticker-choice-btn brutal-badge px-2.5 py-1 rounded-full bg-amber-400 text-slate-950 text-[10px] cursor-pointer ring-2 ring-slate-900" data-sticker="⚡ BERPRESTASI!">⚡ BERPRESTASI!</button>
+                        <button class="sticker-choice-btn brutal-badge px-2.5 py-1 rounded-full bg-sky-500 text-white text-[10px] cursor-pointer" data-sticker="🎓 SMKN BATUJAYA">🎓 SMKN BATUJAYA</button>
+                        <button class="sticker-choice-btn brutal-badge px-2.5 py-1 rounded-full bg-emerald-500 text-white text-[10px] cursor-pointer" data-sticker="💡 KREATIF">💡 KREATIF</button>
+                        <button class="sticker-choice-btn brutal-badge px-2.5 py-1 rounded-full bg-indigo-500 text-white text-[10px] cursor-pointer" data-sticker="💯 SOLIDARITAS">💯 SOLIDARITAS</button>
                     </div>
 
-                    <div id="corkboard-canvas" class="w-full h-32 bg-amber-100/80 border-2 border-dashed border-amber-900/40 rounded-lg relative overflow-hidden cursor-crosshair select-none flex items-center justify-center p-2">
-                        <div id="corkboard-placeholder" class="text-center text-amber-900/50 pointer-events-none font-mono text-[10px]">
-                            <i class="fa-solid fa-hand-pointer block text-base mb-1 animate-bounce"></i>
-                            Klik di sini untuk tempel stiker!
+                    <div id="corkboard-canvas" class="w-full h-32 bg-amber-100/50 dark:bg-slate-950/60 border-2 border-dashed border-slate-300 dark:border-slate-700 rounded-xl relative overflow-hidden cursor-crosshair select-none flex items-center justify-center p-2">
+                        <div id="corkboard-placeholder" class="text-center text-slate-400 pointer-events-none font-sans text-[11px] font-medium">
+                            <i class="fa-solid fa-hand-pointer block text-base mb-1 animate-bounce text-amber-500"></i>
+                            Klik di sini untuk tempel stiker motivasi!
                         </div>
                     </div>
                 </div>
@@ -1172,44 +1656,44 @@
 
 
     <!-- ==========================================
-         RETRO FOOTER
+         ACADEMIC FOOTER
          ========================================== -->
-    <footer class="bg-black text-white pt-10 sm:pt-12 pb-24 lg:pb-8 border-t-4 border-black mt-10 sm:mt-12 w-full">
+    <footer class="bg-[#0A1B30] text-slate-300 pt-10 sm:pt-12 pb-24 lg:pb-8 border-t-4 border-[#0F2744] mt-10 sm:mt-12 w-full">
         <div class="max-w-[1440px] mx-auto px-4 sm:px-6">
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 mb-8 text-xs font-mono">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 mb-8 text-xs font-sans">
                 
                 <div class="sm:col-span-2 space-y-3">
-                    <div class="flex items-center gap-2">
-                        <div class="w-8 h-8 rounded bg-retro-yellow text-black flex items-center justify-center font-bold border border-black">
-                            <i class="fa-solid fa-graduation-cap"></i>
+                    <div class="flex items-center gap-2.5">
+                        <div class="w-9 h-9 rounded-xl bg-amber-500 text-slate-950 flex items-center justify-center font-bold shadow-sm">
+                            <i class="fa-solid fa-graduation-cap text-base"></i>
                         </div>
                         <span id="footer-school-name" class="font-display font-black text-base sm:text-lg text-white">OSIS SMKN BATUJAYA</span>
                     </div>
-                    <p id="footer-desc" class="text-zinc-400 font-sans leading-relaxed max-w-sm text-xs">
-                        Membangun generasi pemimpin muda yang cerdas, berintegritas, dan berprestasi demi kemajuan sekolah.
+                    <p id="footer-desc" class="text-slate-400 font-sans leading-relaxed max-w-sm text-xs">
+                        Membangun generasi pemimpin muda yang cerdas, berintegritas, dan berprestasi demi kemajuan almamater dan masa depan bangsa.
                     </p>
                     <div class="flex gap-2 pt-1">
-                        <a id="footer-ig" href="#" target="_blank" class="w-8 h-8 rounded bg-zinc-900 border border-zinc-700 hover:border-retro-pink hover:text-retro-pink flex items-center justify-center"><i class="fa-brands fa-instagram"></i></a>
-                        <a id="footer-yt" href="#" target="_blank" class="w-8 h-8 rounded bg-zinc-900 border border-zinc-700 hover:border-retro-pink hover:text-retro-pink flex items-center justify-center"><i class="fa-brands fa-youtube"></i></a>
-                        <a id="footer-tiktok" href="#" target="_blank" class="w-8 h-8 rounded bg-zinc-900 border border-zinc-700 hover:border-retro-cyan hover:text-retro-cyan flex items-center justify-center"><i class="fa-brands fa-tiktok"></i></a>
-                        <a id="footer-spotify" href="#" target="_blank" class="w-8 h-8 rounded bg-zinc-900 border border-zinc-700 hover:border-retro-lime hover:text-retro-lime flex items-center justify-center"><i class="fa-brands fa-spotify"></i></a>
+                        <a id="footer-ig" href="#" target="_blank" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-amber-500 hover:text-slate-950 flex items-center justify-center transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                        <a id="footer-yt" href="#" target="_blank" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-red-600 hover:text-white flex items-center justify-center transition-colors"><i class="fa-brands fa-youtube"></i></a>
+                        <a id="footer-tiktok" href="#" target="_blank" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-sky-500 hover:text-slate-950 flex items-center justify-center transition-colors"><i class="fa-brands fa-tiktok"></i></a>
+                        <a id="footer-spotify" href="#" target="_blank" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-emerald-500 hover:text-slate-950 flex items-center justify-center transition-colors"><i class="fa-brands fa-spotify"></i></a>
                     </div>
                 </div>
 
                 <div>
-                    <h4 class="font-display font-black text-retro-yellow uppercase mb-2 sm:mb-3">Navigasi Cepat</h4>
-                    <ul class="space-y-1.5 text-zinc-400 text-xs">
-                        <li><a href="#feed-hero" class="hover:text-retro-yellow">Beranda Portal</a></li>
-                        <li><a href="#timeline-setahun" class="hover:text-retro-yellow">Timeline Setahun</a></li>
-                        <li><a href="#proker-section" class="hover:text-retro-yellow">Program Kerja</a></li>
-                        <li><a href="#kolom-donasi" class="text-retro-yellow hover:underline">Kolom Donasi QRIS & E-Wallet</a></li>
-                        <li><a href="#aspirasi-section" class="hover:text-retro-yellow">Kotak Aspirasi Siswa</a></li>
+                    <h4 class="font-display font-black text-amber-400 uppercase tracking-wider mb-2 sm:mb-3">Navigasi Portal</h4>
+                    <ul class="space-y-1.5 text-slate-400 text-xs">
+                        <li><a href="#feed-hero" class="hover:text-amber-400 transition-colors">Beranda Portal</a></li>
+                        <li><a href="#timeline-setahun" class="hover:text-amber-400 transition-colors">Timeline Setahun</a></li>
+                        <li><a href="#proker-section" class="hover:text-amber-400 transition-colors">Program Kerja</a></li>
+                        <li><a href="#kolom-donasi" class="text-amber-400 hover:underline">Kolom Donasi QRIS & E-Wallet</a></li>
+                        <li><a href="#aspirasi-section" class="hover:text-amber-400 transition-colors">Kotak Aspirasi Siswa</a></li>
                     </ul>
                 </div>
 
                 <div>
-                    <h4 class="font-display font-black text-retro-cyan uppercase mb-2 sm:mb-3">Sekretariat OSIS</h4>
-                    <ul class="space-y-1.5 text-zinc-400 text-xs">
+                    <h4 class="font-display font-black text-sky-400 uppercase tracking-wider mb-2 sm:mb-3">Sekretariat OSIS</h4>
+                    <ul class="space-y-1.5 text-slate-400 text-xs">
                         <li id="footer-alamat">Jl. Raya Batujaya No. 1, Karawang</li>
                         <li id="footer-email">osis@smknbatujaya.sch.id</li>
                         <li id="footer-telp">(0267) 845-1234</li>
@@ -1218,9 +1702,9 @@
 
             </div>
 
-            <div class="pt-6 border-t border-zinc-800 text-center text-[10px] sm:text-[11px] font-mono text-zinc-500 flex flex-col sm:flex-row items-center justify-between gap-2">
-                <p id="footer-copyright">&copy; 2026 OSIS SMKN Batujaya. Responsive Edition with Global Visitor Tracker.</p>
-                <p id="footer-tagline">Dibuat dengan semangat retro 90s & kolaborasi siswa.</p>
+            <div class="pt-6 border-t border-slate-800 text-center text-[10px] sm:text-[11px] font-sans text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-2">
+                <p id="footer-copyright">&copy; 2026 OSIS SMKN Batujaya. Educational Edition with Global Visitor Tracker.</p>
+                <p id="footer-tagline">Dedikasi untuk integritas, kepemimpinan siswa, dan inovasi pendidikan.</p>
             </div>
         </div>
     </footer>
@@ -1229,21 +1713,21 @@
          MOBILE BOTTOM FLOATING DOCK (1-COLUMN NAVIGATION)
          Hanya tampil di layar ponsel (< 1024px) untuk navigasi cepat
          ========================================== -->
-    <div class="fixed bottom-3 left-1/2 -translate-x-1/2 z-40 lg:hidden w-[95%] max-w-md bg-zinc-950/95 backdrop-blur border-2 border-black rounded-2xl p-1.5 shadow-brutal flex items-center justify-around gap-1 font-display text-[10px] font-black text-white">
-        <a href="#kolom-inbound" class="flex-1 py-1.5 px-1 bg-zinc-900 hover:bg-retro-yellow hover:text-black rounded-xl flex flex-col items-center justify-center gap-0.5 border border-zinc-700 active:scale-95 transition-all text-center">
-            <i class="fa-solid fa-satellite-dish text-xs text-retro-cyan"></i>
+    <div class="fixed bottom-3 left-1/2 -translate-x-1/2 z-40 lg:hidden w-[95%] max-w-md bg-[#0B132B]/95 backdrop-blur-md border-2 border-slate-700 rounded-2xl p-1.5 shadow-xl flex items-center justify-around gap-1 font-display text-[10px] font-black text-white">
+        <a href="#kolom-inbound" class="flex-1 py-2 px-1 bg-slate-900 hover:bg-amber-400 hover:text-slate-950 rounded-xl flex flex-col items-center justify-center gap-0.5 border border-slate-800 active:scale-95 transition-all text-center">
+            <i class="fa-solid fa-satellite-dish text-xs text-sky-400"></i>
             <span class="leading-none text-[9px]">Inbound</span>
         </a>
-        <a href="#feed-hero" class="flex-1 py-1.5 px-1 bg-zinc-900 hover:bg-retro-yellow hover:text-black rounded-xl flex flex-col items-center justify-center gap-0.5 border border-zinc-700 active:scale-95 transition-all text-center">
-            <i class="fa-solid fa-bolt text-xs text-retro-yellow"></i>
+        <a href="#feed-hero" class="flex-1 py-2 px-1 bg-slate-900 hover:bg-amber-400 hover:text-slate-950 rounded-xl flex flex-col items-center justify-center gap-0.5 border border-slate-800 active:scale-95 transition-all text-center">
+            <i class="fa-solid fa-house text-xs text-amber-400"></i>
             <span class="leading-none text-[9px]">Beranda</span>
         </a>
-        <a href="#timeline-setahun" class="flex-1 py-1.5 px-1 bg-zinc-900 hover:bg-retro-yellow hover:text-black rounded-xl flex flex-col items-center justify-center gap-0.5 border border-zinc-700 active:scale-95 transition-all text-center">
-            <i class="fa-solid fa-calendar-days text-xs text-retro-pink"></i>
-            <span class="leading-none text-[9px]">Timeline</span>
+        <a href="#timeline-setahun" class="flex-1 py-2 px-1 bg-slate-900 hover:bg-amber-400 hover:text-slate-950 rounded-xl flex flex-col items-center justify-center gap-0.5 border border-slate-800 active:scale-95 transition-all text-center">
+            <i class="fa-solid fa-calendar-check text-xs text-emerald-400"></i>
+            <span class="leading-none text-[9px]">Agenda</span>
         </a>
-        <a href="#kolom-donasi" class="flex-1 py-1.5 px-1 bg-retro-pink text-white rounded-xl flex flex-col items-center justify-center gap-0.5 border border-black shadow-brutal-sm active:scale-95 transition-all text-center font-bold">
-            <i class="fa-solid fa-qrcode text-xs"></i>
+        <a href="#kolom-donasi" class="flex-1 py-2 px-1 bg-amber-500 hover:bg-amber-400 text-slate-950 rounded-xl flex flex-col items-center justify-center gap-0.5 border border-[#0F2744] shadow-sm active:scale-95 transition-all text-center font-bold">
+            <i class="fa-solid fa-hand-holding-dollar text-xs"></i>
             <span class="leading-none text-[9px]">Donasi</span>
         </a>
     </div>
