@@ -253,6 +253,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setupEventListeners();
     setupStickerBoard();
     setupTouchAndNavigation();
+    setupScrollAnimationsAndTilt();
     if (typeof originalTracks !== 'undefined' && originalTracks.length > 0) {
         updateTrackInfoUI(originalTracks[0]);
     }
@@ -352,37 +353,64 @@ function renderTimelineCards(filterQuarter) {
         ? dataTimeline.agenda 
         : dataTimeline.agenda.filter(a => a.quarter === filterQuarter);
 
-    grid.innerHTML = filtered.map(item => `
-        <div class="brutal-card bg-white border-2 border-black p-4 hover:shadow-brutal transition-all overflow-hidden">
-            <div class="flex items-center justify-between pb-2 mb-3 border-b border-zinc-200">
-                <div class="flex items-center gap-2">
-                    <span class="brutal-badge bg-black text-retro-yellow px-2 py-0.5 rounded text-[8px] font-pixel">
-                        ${item.quarter}
-                    </span>
-                    <span class="font-mono text-xs font-bold text-zinc-500">${item.periode}</span>
-                </div>
-                <span class="brutal-badge ${item.statusColor} px-2 py-0.2 rounded text-[9px] font-pixel">
-                    ${item.status}
-                </span>
+    grid.innerHTML = filtered.map((item, index) => {
+        const nodeNum = String(index + 1).padStart(2, '0');
+        const isCompleted = item.status && (item.status.toLowerCase().includes('terlaksana') || item.status.toLowerCase().includes('selesai'));
+        const questBadge = isCompleted 
+            ? `<span class="brutal-badge bg-retro-lime text-black px-2 py-0.5 rounded text-[8px] font-pixel"><i class="fa-solid fa-check mr-1"></i> QUEST CLEARED</span>`
+            : `<span class="brutal-badge bg-retro-pink text-white px-2 py-0.5 rounded text-[8px] font-pixel"><i class="fa-solid fa-clock mr-1"></i> ACTIVE QUEST</span>`;
+
+        return `
+        <div class="relative pl-6 sm:pl-10 timeline-checkpoint-node scroll-reveal tilt-card">
+            <!-- Road map vertical marker line -->
+            <div class="absolute left-2.5 sm:left-4 top-0 bottom-0 w-0.5 bg-black/20 dark:bg-yellow-400/30"></div>
+            <!-- Checkpoint circle icon -->
+            <div class="absolute left-0 sm:left-1.5 top-4 w-6 h-6 sm:w-7 sm:h-7 rounded-full ${isCompleted ? 'bg-retro-lime text-black' : 'bg-retro-yellow text-black'} border-2 border-black font-pixel text-[8px] sm:text-[9px] flex items-center justify-center font-black shadow-brutal-sm z-10">
+                ${nodeNum}
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-12 gap-3 items-center">
-                <div class="sm:col-span-4 aspect-video overflow-hidden border border-black rounded bg-zinc-100">
-                    <img src="${item.foto}" alt="${item.judul}" class="w-full h-full object-cover">
+            <div class="brutal-card bg-white border-2 border-black p-4 hover:shadow-brutal transition-all overflow-hidden">
+                <div class="flex flex-wrap items-center justify-between gap-2 pb-2 mb-3 border-b border-zinc-200">
+                    <div class="flex items-center gap-2">
+                        <span class="brutal-badge bg-black text-retro-yellow px-2 py-0.5 rounded text-[8px] font-pixel">
+                            ${item.quarter}
+                        </span>
+                        <span class="font-mono text-xs font-bold text-zinc-500">${item.periode}</span>
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                        ${questBadge}
+                        <span class="brutal-badge ${item.statusColor} px-2 py-0.2 rounded text-[9px] font-pixel">
+                            ${item.status}
+                        </span>
+                    </div>
                 </div>
-                <div class="sm:col-span-8">
-                    <span class="font-mono text-[10px] text-retro-pink font-bold uppercase">${item.sekbid}</span>
-                    <h4 class="font-display font-black text-base text-black mt-0.5 leading-snug">${item.judul}</h4>
-                    <p class="font-sans text-xs text-zinc-600 mt-1 leading-relaxed">${item.deskripsi}</p>
-                </div>
-            </div>
 
-            <div class="mt-3 pt-2 border-t border-dashed border-zinc-200 flex flex-wrap items-center justify-between text-[11px] font-mono text-zinc-600 gap-1">
-                <span><i class="fa-solid fa-location-dot text-black mr-1"></i> ${item.lokasi}</span>
-                <span><strong>Capaian:</strong> ${item.capaian}</span>
+                <div class="grid grid-cols-1 sm:grid-cols-12 gap-3 items-center">
+                    <div class="sm:col-span-4 aspect-video overflow-hidden border border-black rounded bg-zinc-100 relative group">
+                        <img src="${item.foto}" alt="${item.judul}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                        <span class="absolute bottom-1 left-1 bg-black/80 text-retro-yellow border border-retro-yellow px-1.5 py-0.2 rounded font-pixel text-[7px]">
+                            NODE_${nodeNum}.JPG
+                        </span>
+                    </div>
+                    <div class="sm:col-span-8">
+                        <span class="font-mono text-[10px] text-retro-pink font-bold uppercase tracking-wide">${item.sekbid}</span>
+                        <h4 class="font-display font-black text-base text-black mt-0.5 leading-snug">${item.judul}</h4>
+                        <p class="font-sans text-xs text-zinc-600 mt-1 leading-relaxed">${item.deskripsi}</p>
+                    </div>
+                </div>
+
+                <div class="mt-3 pt-2 border-t border-dashed border-zinc-200 flex flex-wrap items-center justify-between text-[11px] font-mono text-zinc-600 gap-1">
+                    <span><i class="fa-solid fa-location-dot text-black mr-1"></i> ${item.lokasi}</span>
+                    <span><strong>Capaian:</strong> ${item.capaian}</span>
+                </div>
             </div>
         </div>
-    `).join('');
+        `;
+    }).join('');
+
+    if (typeof setupScrollAnimationsAndTilt === 'function') {
+        setupScrollAnimationsAndTilt();
+    }
 }
 
 
@@ -472,7 +500,7 @@ function renderDonasi() {
                     particleCount: 100,
                     spread: 70,
                     origin: { y: 0.6 },
-                    colors: ['#FFE600', '#FF2A85', '#00F5D4', '#121212', '#2CEAA3']
+                    colors: ['#F59E0B', '#1E3A5F', '#0284C7', '#10B981', '#0F2744']
                 });
             }
 
@@ -522,11 +550,22 @@ async function setupVisitorTracker() {
     hits += 1;
     localStorage.setItem('osis_retro_hits', hits.toString());
 
-    // Render odometer digital retro blocks
+    // Render odometer digital retro blocks with slot-machine rolling animation
     const hitStr = hits.toString().padStart(6, '0');
     const odometerEl = document.getElementById("visitor-odometer");
     if (odometerEl) {
-        odometerEl.innerHTML = hitStr.split('').map(d => `<span class="odometer-digit">${d}</span>`).join('');
+        let rollCount = 0;
+        const maxRolls = 7;
+        const rollTimer = setInterval(() => {
+            rollCount++;
+            if (rollCount >= maxRolls) {
+                clearInterval(rollTimer);
+                odometerEl.innerHTML = hitStr.split('').map(d => `<span class="odometer-digit animate-[bounce_0.2s_ease-out]">${d}</span>`).join('');
+                if (typeof playRetroSFX === 'function') playRetroSFX('coin');
+            } else {
+                odometerEl.innerHTML = Array.from({length: 6}, () => `<span class="odometer-digit text-retro-cyan">${Math.floor(Math.random() * 10)}</span>`).join('');
+            }
+        }, 65);
     }
 
     // 2. Fetch User Geolocation (Using free CORS IP Geo API with fallback)
@@ -680,7 +719,7 @@ function renderPengurus() {
     // Members Grid
     const membersGrid = document.getElementById("members-grid");
     membersGrid.innerHTML = dataPengurus.anggota.map(m => `
-        <div class="member-card brutal-card bg-white p-2 border-2 border-black shadow-brutal-sm hover:shadow-brutal transition-all" data-category="${m.kategori}">
+        <div class="member-card brutal-card bg-white p-2 border-2 border-black shadow-brutal-sm hover:shadow-brutal transition-all stagger-item" data-category="${m.kategori}">
             <div class="relative aspect-[3/4] overflow-hidden border border-black rounded bg-zinc-100 group">
                 <img src="${m.foto}" alt="${m.nama}" class="w-full h-full object-cover">
                 <div class="absolute top-1 right-1 brutal-badge bg-black text-white px-1.5 py-0.2 rounded text-[8px] font-pixel">
@@ -714,7 +753,7 @@ function renderGaleri() {
         const rotations = ['rotate-1', '-rotate-1', 'rotate-2', '-rotate-2'];
         const rot = rotations[i % rotations.length];
         return `
-            <div class="brutal-card p-2 bg-white border-2 border-black shadow-brutal-sm hover:rotate-0 transition-transform ${rot} taped-corner">
+            <div class="brutal-card p-2 bg-white border-2 border-black shadow-brutal-sm hover:rotate-0 transition-transform ${rot} taped-corner stagger-item">
                 <div class="relative aspect-video overflow-hidden border border-black rounded bg-zinc-100">
                     <img src="${f.gambar}" alt="${f.judul}" class="w-full h-full object-cover">
                 </div>
@@ -840,6 +879,32 @@ function setupStickerBoard() {
 
 // --- GENERAL EVENT LISTENERS ---
 function setupEventListeners() {
+    // 0. Dark Mode / Theme Toggle
+    const themeBtn = document.getElementById("theme-toggle-btn");
+    const updateThemeUI = (isDark) => {
+        const themeIcon = document.getElementById("theme-icon");
+        const themeStatus = document.getElementById("theme-status");
+        if (themeIcon) {
+            themeIcon.className = isDark ? "fa-solid fa-sun text-retro-yellow transition-transform duration-300" : "fa-solid fa-moon text-retro-yellow transition-transform duration-300";
+        }
+        if (themeStatus) {
+            themeStatus.textContent = isDark ? "DARK: ON" : "DARK: OFF";
+        }
+    };
+
+    // Initialize UI on load based on class
+    const isCurrentlyDark = document.documentElement.classList.contains("dark");
+    updateThemeUI(isCurrentlyDark);
+
+    if (themeBtn) {
+        themeBtn.addEventListener("click", () => {
+            playRetroSFX('coin');
+            const isDarkNow = document.documentElement.classList.toggle("dark");
+            localStorage.setItem('osis_theme', isDarkNow ? 'dark' : 'light');
+            updateThemeUI(isDarkNow);
+        });
+    }
+
     // SFX Sound Toggle
     const sfxBtn = document.getElementById("sfx-toggle-btn");
     if (sfxBtn) {
@@ -1002,11 +1067,13 @@ function setupTouchAndNavigation() {
                     playRetroSFX('click');
                     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-                    // Highlight card sejenak agar pengguna langsung tahu posisinya
-                    target.classList.add('ring-4', 'ring-retro-pink');
-                    setTimeout(() => {
-                        target.classList.remove('ring-4', 'ring-retro-pink');
-                    }, 1200);
+                    // Pulse border animation (Fase 6 section-arrival)
+                    target.classList.remove('section-arrival');
+                    void target.offsetWidth; // force reflow to restart animation
+                    target.classList.add('section-arrival');
+                    target.addEventListener('animationend', () => {
+                        target.classList.remove('section-arrival');
+                    }, { once: true });
                 }
             }
         });
@@ -1029,3 +1096,120 @@ function setupTouchAndNavigation() {
         }, { passive: true });
     });
 }
+
+
+// =========================================================================
+// ✨ FASE 5 — SCROLL REVEAL, PARALLAX & TILT CARD ENGINE
+// =========================================================================
+
+function setupScrollAnimationsAndTilt() {
+
+    // --- 1. INTERSECTION OBSERVER: Scroll Reveal ---
+    // Setiap elemen .scroll-reveal muncul smooth saat masuk viewport
+    const revealEls = document.querySelectorAll('.scroll-reveal');
+
+    if ('IntersectionObserver' in window) {
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, i) => {
+                if (entry.isIntersecting) {
+                    // Stagger delay berdasarkan posisi index dalam kontainer
+                    const siblings = [...(entry.target.parentElement?.children || [])];
+                    const siblingIndex = siblings.indexOf(entry.target);
+                    const delay = Math.min(siblingIndex * 80, 320); // max 320ms stagger
+                    setTimeout(() => {
+                        entry.target.classList.add('in-view');
+                    }, delay);
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.12,
+            rootMargin: '0px 0px -40px 0px'
+        });
+
+        revealEls.forEach(el => revealObserver.observe(el));
+
+        // Juga observe .brutal-card yang belum punya .scroll-reveal tapi baru dimuat
+        const cardObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    cardObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+
+        document.querySelectorAll('.brutal-card:not(.scroll-reveal)').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.55s cubic-bezier(0.16,1,0.3,1), transform 0.55s cubic-bezier(0.16,1,0.3,1)';
+            cardObserver.observe(card);
+        });
+    } else {
+        // Fallback: langsung tampilkan semua jika tidak support IntersectionObserver
+        revealEls.forEach(el => el.classList.add('in-view'));
+    }
+
+
+    // --- 2. PARALLAX SCROLLING ---
+    // Layer background grid dan hero image bergerak di kecepatan berbeda
+    let ticking = false;
+
+    const heroCard = document.getElementById('feed-hero');
+    const heroRadar = heroCard ? heroCard.querySelector('.hero-radar-grid') : null;
+    const headerEl = document.querySelector('header');
+    const tickerEl = document.querySelector('.marquee-wrapper');
+
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                const y = window.scrollY;
+
+                // Parallax: hero radar grid drifts sedikit ke bawah
+                if (heroRadar) {
+                    heroRadar.style.transform = `translateY(${y * 0.15}px)`;
+                }
+
+                // Parallax: hero image scale up sedikit di awal
+                const heroImg = document.getElementById('hero-main-img');
+                if (heroImg && heroCard) {
+                    const heroOffset = heroCard.getBoundingClientRect().top + y;
+                    const relY = y - heroOffset;
+                    const pctFromTop = Math.max(0, Math.min(1, relY / (heroCard.offsetHeight * 1.5)));
+                    heroImg.style.transform = `scale(${1 + pctFromTop * 0.06})`;
+                }
+
+                ticking = false;
+            });
+            ticking = true;
+        }
+    }, { passive: true });
+
+
+    // --- 3. TILT CARD EFFECT (Desktop only) ---
+    // Kartu miring sedikit sesuai posisi mouse — memberikan kedalaman 3D
+    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+        document.querySelectorAll('.tilt-card').forEach(card => {
+            const MAX_TILT = 4; // derajat max tilt
+
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const cx = rect.left + rect.width / 2;
+                const cy = rect.top + rect.height / 2;
+                const dx = (e.clientX - cx) / (rect.width / 2);
+                const dy = (e.clientY - cy) / (rect.height / 2);
+
+                const tiltX = (-dy * MAX_TILT).toFixed(2);
+                const tiltY = (dx * MAX_TILT).toFixed(2);
+
+                card.style.transform = `perspective(800px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(1.01, 1.01, 1.01)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+            });
+        });
+    }
+}
+
